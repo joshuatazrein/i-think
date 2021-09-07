@@ -1,78 +1,48 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>i think</title>
-  <link href="../assets/img/favicon.png" rel="icon">
-  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="./assets/img/favicon.png" rel="icon">
+  <link href="./assets/css/style.css" rel="stylesheet">
+  <script src='./assets/js/jquery.js'></script>
 </head>
 <body>
   <!-- # HEADER -->
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center justify-content-between">
-      <a href="/index.html" class="logo"><img src="../assets/img/logo-tazman.png" alt="" class="img-fluid"></a>
+      <a href="/index.html" class="logo"><img src="./assets/img/logo-tazman.png" alt="" class="img-fluid"></a>
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link" href="/is.html">is</a></li>
           <li><a class="nav-link" href="/does/index.html">does</a></li>
-          <li><a class="nav-link" href="/thinks/__index.html">thinks</a></li>
+          <li><a class="nav-link" href="/thinks/index.html">thinks</a></li>
           <li><a class="nav-link" href="/talks.html">talks</a></li>
           <li>
             <form role="search" id="form">
               <input type="search" id="query" name="q" placeholder="search..." aria-label="Search through site content">
             </form>
-            <script src="../assets/js/search.js" type='text/js'></script>
+            <script src="./assets/js/search.js" type='text/js'></script>
           </li>
         </ul>
       </nav>
     </div>
   </header>
 	<main id="main">
-		<div class="main-content paddSection">
-			<img class="img-responsive" id="headerimage" src="../assets/img/thinks-head.png">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-md-8 col-md-offset-2">
-						<div class="container-main single-main">
-							<div class="block-main mb-30">
-								<!--#include file="includes/artistic ideologies and practices_index.html" -->
-								<!--#include file="includes/knowledge management_index.html" -->
-								<!--#include file="includes/dharma_index.html" -->
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</main>
-	  <!-- ======= Footer ======= -->
-  <div id="footer" class="text-center">
-    <div class="container">
-      <div class="socials-media text-center">
-
+		<div class='containter'>
+      <div class='content centered'>
+        <h1>index</h1>
+        <p id='indextext' link='index'></p>
       </div>
-
-      <p>&copy; ME ME ME ME ME and also...</p>
-
-      <div class="credits">
-        <!--
-        All the links in the footer should remain intact.
-        You can delete the links only if you purchased the pro version.
-        Licensing information: https://bootstrapmade.com/license/
-        Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/buy/?theme=Folio
-      -->
-        thanks to the template by <a href="https://bootstrapmade.com/">boostrap-made</a>
-      </div>
-
     </div>
-  </div><!-- End Footer -->
-  
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Vendor JS Files -->
-
-  <!-- Template Main JS File -->
-  <script src="../assets/js/main.js"></script>
+  </div>
+</main>
+<div id="footer">
+  <p>&copy; ME ME ME ME ME and also...</p>
+  <p class="credits">thanks to the template by <a href="https://bootstrapmade.com/">boostrap-made</a>
+  </p>
+</div>
+<script src="./assets/js/blogscript.js"></script>
 </body>
 </html>
