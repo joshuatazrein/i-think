@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--#include virtual="/includes/head.html" -->
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>i think</title>
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <script src='../assets/js/jquery.js'></script>
+</head>
 <body>
-	<!--#include virtual="/includes/header.html" -->
+  <!-- # HEADER -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a href="/index.html" class="logo"><img src="../assets/img/logo-tazman.png" alt="" class="img-fluid"></a>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link" href="/is.html">is</a></li>
+          <li><a class="nav-link" href="/does/index.html">does</a></li>
+          <li><a class="nav-link" href="/thinks/__index.html">thinks</a></li>
+          <li><a class="nav-link" href="/talks.html">talks</a></li>
+          <li>
+            <form role="search" id="form">
+              <input type="search" id="query" name="q" placeholder="search..." aria-label="Search through site content">
+            </form>
+            <script src="../assets/js/search.js" type='text/js'></script>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 	<main id="main">
-		<div class="main-content paddsection">
-			<img class="img-responsive" id="headerimage" src="assets/img/thinks-head.png">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-md-8">
-						<div class="content-main padDiv">
+    <img class="img-responsive" id="headerimage" src="../assets/img/thinks-head.png">
+		<div class='container'>
+      <div class='content'>
 <h4>westernized buddhism: misconceptions about mindfulness</h4>
 <p>I have been practicing meditation since I was 17, and although the word itself is held with a certain degree of distance by Buddhists, I call myself a Buddhist.</p>
 <p>Buddhism is a religion which at its core is skeptical of identifying. One of its teachings which I have found most far-reaching is <span class="italic">anatta</span>, or non-self: the truth that the self is an illusion (keep in mind that this doens't mean the self doesn't "exist," but rather that it exists as an illusion). The attitude which emerges from this truth is a resistance to stories or accepting anything as absolute, and thus in order to truly be a Buddhist, one must question the coherence of the word Buddhism.</p>
@@ -22,16 +45,18 @@
 	<li><a href='./the simulation.html'>the simulation</a></li>
 	<li><a href='./backwards canonization.html'>backwards canonization</a></li>
 </ul>
-						</div>
-					</div>
-					<div class="col-md-4" style="background: #000">
-					    <p style="text-align: right; margin:0"><a href="__index.html">index</a></p>
-						<!--#include file="includes/dharma_index.html" -->
-					</div>
-				</div>
-			</div>
-		</div>
+      </div>
+      <div class='index'>
+        <p style="text-align: right; margin:0"><a href="../index.html">index</a></p>
+        <p id='indextext' link="../i/dharma.html"></p>
+      </div>
+    </div>
 	</main>
-	<!--#include virtual="/includes/footer.html" -->
+  <div id="footer">
+    <p>&copy; ME ME ME ME ME and also...</p>
+    <p class="credits">thanks to the template by <a href="https://bootstrapmade.com/">boostrap-made</a>
+    </p>
+  </div>
+  <script src="../assets/js/blogscript.js"></script>
 </body>
 </html>

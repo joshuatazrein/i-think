@@ -1,0 +1,299 @@
+/* BLOG */
+
+* {
+  box-sizing: border-box;
+}
+
+.main {
+  background-color: #000;
+  color: #fff;
+}
+
+.container {
+  padding: 30px;
+}
+
+.content {
+  background-color: rgb(39, 44, 48);
+  padding: 30px;
+  float: left;
+  width: 70%;
+}
+
+.index {
+  float: left;
+  width: 30%;
+  padding: 0 20px;
+}
+
+.index {
+  background-color: transparent;
+}
+
+/* SEARCH BAR */
+
+form {
+    background-color: #000;
+    width: 200px;
+    height: 44px;
+    border-radius: 5px;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    padding: 0 20px;
+}
+
+input {
+    all: unset;
+    font: 16px "Cochin";
+    color: #fff;
+    height: 100%;
+    width: 100%;
+    padding: 6px 10px;
+}
+/*--------------------------------------------------------------
+# General
+--------------------------------------------------------------*/
+
+body {
+  background: #000;
+  color: #f7f7f7;
+  font-family: 'Cochin';
+  font-size: 24px;
+  line-height: 1.25em;
+  letter-spacing: 0.02em;
+  overflow-x: hidden;
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+h1 {
+  font-weight: 600;
+}
+
+h2 {
+  font-weight: bold;
+  font-size: 200%;
+}
+
+a {
+  color: #6CA6CD;
+  text-decoration: none;
+  transition: all 0.25s ease-in-out 0s;
+}
+
+a:hover {
+  color: #0D4F8B !important;
+  transition: all 0.25s ease-in-out 0s;
+}
+
+::selection, ::-moz-selection {
+  background: #0D4F8B;
+  color: #fff;
+}
+
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#headerimage.img-responsive {
+  height: auto;
+  margin: 0 5%;
+  width: 90%;
+}
+
+#header {
+  transition: all 0.5s;
+  z-index: 997;
+  padding: 15px 0;
+  background-color: #000;
+  box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.08);
+}
+
+#header .logo {
+  font-size: 30px;
+  margin: 0;
+  padding: 0;
+  line-height: 1em;
+  font-weight: 600;
+  letter-spacing: 1px;
+  font-family: "Cochin";
+  font-style: italic;
+}
+
+#header .logo a {
+  color: #f7f7f7;
+}
+
+#header .logo img {
+  max-height: 40px;
+}
+
+@media (max-width: 992px) {
+  #header {
+    border: 0;
+  }
+}
+
+.nav-link {
+  color: #f7f7f7 !important;
+  text-decoration: none !important;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+.nav-link:hover {
+  color: #0D4F8B !important;
+  transition: all 0.5s ease-in-out 0s;
+}
+
+/*--------------------------------------------------------------
+# Navigation Menu
+--------------------------------------------------------------*/
+/* Desktop Navigation */
+.navbar {
+  padding: 0;
+}
+
+.navbar ul {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  list-style: none;
+  align-items: center;
+}
+
+.navbar li {
+  position: relative;
+}
+
+.navbar a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0 10px 30px;
+  font-family: "Cochin";
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 500;
+  color: #f7f7f7;
+  white-space: nowrap;
+  transition: 0.3s;
+}
+
+.navbar a i {
+  font-size: 12px;
+  line-height: 0;
+  margin-left: 5px;
+}
+
+.navbar a:hover, .navbar .active, .navbar li:hover > a {
+  color: #0D4F8B;
+}
+
+/** * Mobile Navigation */
+.mobile-nav-toggle {
+  color: #f7f7f7;
+  font-size: 28px;
+  cursor: pointer;
+  display: none;
+  line-height: 0;
+  transition: 0.5s;
+}
+
+.mobile-nav-toggle.bi-x {
+  color: #f7f7f7;
+}
+
+@media (max-width: 991px) {
+  .mobile-nav-toggle {
+    display: block;
+  }
+  .navbar ul {
+    display: none;
+  }
+}
+
+.navbar-mobile {
+  position: fixed;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(49, 49, 49, 0.9);
+  transition: 0.3s;
+}
+
+.navbar-mobile .mobile-nav-toggle {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.navbar-mobile ul {
+  display: block;
+  position: absolute;
+  top: 55px;
+  right: 15px;
+  bottom: 15px;
+  left: 15px;
+  padding: 10px 0;
+  border-radius: 10px;
+  background-color: #000;
+  overflow-y: auto;
+  transition: 0.3s;
+  text-align: left;
+}
+
+.navbar-mobile a {
+  padding: 12% 0;
+  margin: 0 43%;
+  font-size: 36px;
+  color: #f7f7f7;
+}
+
+/*-----------------------------------------------------------------------------------*/
+/* BLOG
+/*-----------------------------------------------------------------------------------*/
+
+
+/*--------------------------------------------------------------
+# Footer
+--------------------------------------------------------------*/
+#footer {
+  clear: left;
+  background: #000;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  width: 100%;
+}
+
+#footer p {
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-align: left;
+  margin-top: 0;
+  font-size: 14px;
+  margin-bottom: 0.5em;
+  float: left;
+  width: 50%;
+  padding: 0 40px;
+}
+
+#footer p.credits {
+  font-size: 14px;
+  text-align: right;
+  font-weight: 100;
+}
+
+@media only screen and (max-width: 800px) {
+  .content, .index {
+    float: none;
+    clear: left;
+    width: 100%;
+  }
+  .index {
+    margin-top: 20px;
+  }
+}

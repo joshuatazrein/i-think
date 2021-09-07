@@ -1,15 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<!--#include virtual="/includes/head.html" -->
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>i think</title>
+  <link href="../assets/img/favicon.png" rel="icon">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <script src='../assets/js/jquery.js'></script>
+</head>
 <body>
-	<!--#include virtual="/includes/header.html" -->
+  <!-- # HEADER -->
+  <header id="header" class="fixed-top ">
+    <div class="container d-flex align-items-center justify-content-between">
+      <a href="/index.html" class="logo"><img src="../assets/img/logo-tazman.png" alt="" class="img-fluid"></a>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link" href="/is.html">is</a></li>
+          <li><a class="nav-link" href="/does/index.html">does</a></li>
+          <li><a class="nav-link" href="/thinks/__index.html">thinks</a></li>
+          <li><a class="nav-link" href="/talks.html">talks</a></li>
+          <li>
+            <form role="search" id="form">
+              <input type="search" id="query" name="q" placeholder="search..." aria-label="Search through site content">
+            </form>
+            <script src="../assets/js/search.js" type='text/js'></script>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 	<main id="main">
-		<div class="main-content paddsection">
-			<img class="img-responsive" id="headerimage" src="assets/img/thinks-head.png">
-			<div class="container">
-				<div class="row justify-content-center">
-					<div class="col-md-8">
-						<div class="content-main padDiv">
+    <img class="img-responsive" id="headerimage" src="../assets/img/thinks-head.png">
+		<div class='container'>
+      <div class='content'>
 <h4>content, commentary, context</h4>
 <p><ul>
 	<li>Content: what you're trying to say</li>
@@ -25,16 +48,18 @@
 	<li><a href="./mindfulness: the second degree.html">mindfulness: the second degree</a></li>
 	<li><a href='./hypertext.html'>hypertext</a></li>
 </ul>
-						</div>
-					</div>
-					<div class="col-md-4" style="background: #000">
-				    	<p style="text-align: right; margin:0"><a href="__index.html">index</a></p>
-						<!--#include file="includes/knowledge management_index.html" -->
-					</div>
-				</div>
-			</div>
-		</div>
+      </div>
+      <div class='index'>
+        <p style="text-align: right; margin:0"><a href="../index.html">index</a></p>
+        <p id='indextext' link="../i/knowledge management.html"></p>
+      </div>
+    </div>
 	</main>
-	<!--#include virtual="/includes/footer.html" -->
+  <div id="footer">
+    <p>&copy; ME ME ME ME ME and also...</p>
+    <p class="credits">thanks to the template by <a href="https://bootstrapmade.com/">boostrap-made</a>
+    </p>
+  </div>
+  <script src="../assets/js/blogscript.js"></script>
 </body>
 </html>
