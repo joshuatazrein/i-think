@@ -10,40 +10,32 @@
 </head>
 <body>
   <!-- # HEADER -->
-  <header id="header" class="fixed-top ">
-    <div class="container d-flex align-items-center justify-content-between">
-      <a href="/index.html" class="logo"><img src="/assets/img/logo-tazman.png" alt="" class="img-fluid"></a>
-      <nav id="navbar" class="navbar">
+  <header id="header">
+    <img class="headerimage" src="./assets/img/thinks-head.png">
+    <div class='nav'>
+      <nav>
+        <a href="/index.html" class="logo"><img src="assets/img/logo-tazman.png"></a>
         <ul>
           <li><a class="nav-link" href="/is.html">is</a></li>
           <li><a class="nav-link" href="/does/index.html">does</a></li>
           <li><a class="nav-link" href="/thinks/index.html">thinks</a></li>
           <li><a class="nav-link" href="/talks.html">talks</a></li>
-          <li>
-            <form role="search" id="form">
-              <input type="search" id="query" name="q" placeholder="search..." aria-label="Search through site content">
-            </form>
-            <script src="./assets/js/search.js" type='text/js'></script>
-          </li>
         </ul>
       </nav>
+      <form role="search" id="form">
+        <input type="search" id="query" name="q" placeholder="search..." aria-label="Search through site content">
+      </form>
+      <script src="./assets/js/search.js" type='text/js'></script>
     </div>
-    <img class="img-responsive" id="headerimage" src="./assets/img/thinks-head.png">
   </header>
-	<main id="main">
-		<div class='containter'>
-      <div class='content centered'>
-        <h1>index</h1>
-        <p id='indextext' link='index'></p>
-      </div>
+	<main>
+    <div id='bibliography'></div>
+		<div id='container'>
+      <div id='zettels'></div>
+      <div id='backlinks'></div>
     </div>
-  </div>
-</main>
-<div id="footer">
-  <p>&copy; ME ME ME ME ME and also...</p>
-  <p class="credits">thanks to the template by <a href="https://bootstrapmade.com/">boostrap-made</a>
-  </p>
-</div>
-<script src="./assets/js/blogscript.js"></script>
+    <div id='bookmarks'></div>
+  </main>
+  <script src="./assets/js/blogscript.js"></script>
 </body>
 </html>

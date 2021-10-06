@@ -1,71 +1,118 @@
+:root {
+  --textcolor: whitesmoke;
+  --link: skyblue;
+  --select: #0D4F8B;
+  --font: 'Cochin';
+  --fontsize: 24px;
+  --accent: grey;
+  --background: #000;
+  --foreground: rgb(96, 102, 110);
+}
+
 /* BLOG */
 
 * {
   box-sizing: border-box;
 }
 
-.main {
-  background-color: #000;
-  color: #fff;
+::-webkit-scrollbar {
+  background: var(--background);
+  width: 6px;
 }
 
-.container {
-  padding: 30px;
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 10px;
+  width: 100%;
+  opacity: 0.5;
+  transition: all 0.5s;
 }
 
-.content {
-  background-color: rgb(39, 44, 48);
-  padding: 30px;
+::-webkit-scrollbar-thumb:hover {
+  opacity: 1;
+}
+
+main {
+  height: 100vh;
+  width: calc(100vw - 40px);
+  margin: 0 20px;
+}
+
+main > div {
   float: left;
-  width: 70%;
+  height: 100%;
 }
 
-.centered {
-  float: none;
-  width: 50%;
-  margin: 0 auto;
+div {
+  padding: 0 10px;
 }
 
-.index {
-  float: left;
-  width: 30%;
-  padding: 0 20px;
+#bibliography, #bookmarks {
+  width: 20%;
+  font-size: 75%;
+  line-height: 1.15em;
 }
 
-.index {
-  background-color: transparent;
+#container {
+  width: 60%;
+}
+
+#bibliography li, #bookmarks li {
+  margin-bottom: 0.5em;
+}
+
+main div:not(#container) {
+  overflow-y: scroll;
+}
+
+#zettels {
+  width: 100%;
+  height: 80%;
+  background: var(--foreground);
+}
+
+#backlinks {
+  width: 100%;
+  height: 20%;
+}
+
+.buffer {
+  height: 80%;
+}
+
+.currentlink {
+  color: var(--select) !important;
 }
 
 /* SEARCH BAR */
 
-form {
-    background-color: #000;
-    width: 200px;
-    height: 44px;
-    border-radius: 5px;
-    display:flex;
-    flex-direction:row;
-    align-items:center;
-    padding: 0 20px;
+input {
+  all: unset;
+  font: 16px "Cochin";
+  color: #fff;
+  height: 100%;
+  width: 100%;
+  padding: 6px 10px;
 }
 
-input {
-    all: unset;
-    font: 16px "Cochin";
-    color: #fff;
-    height: 100%;
-    width: 100%;
-    padding: 6px 10px;
+.link, .b-link {
+  color: var(--link);
+  transition: color 0.5s;
 }
+
+.link:hover, .b-link:hover {
+  color: var(--select);
+}
+
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
 
 body {
-  background: #000;
-  color: #f7f7f7;
-  font-family: 'Cochin';
-  font-size: 24px;
+  background: var(--background);
+  color: var(--textcolor);
+  font-family: var(--font);
+  font-size: var(--fontsize);
   line-height: 1.25em;
   letter-spacing: 0.02em;
   overflow-x: hidden;
@@ -91,7 +138,7 @@ a {
 }
 
 a:hover {
-  color: #0D4F8B !important;
+  color: var(--select);
   transition: all 0.25s ease-in-out 0s;
 }
 
@@ -100,169 +147,63 @@ a:hover {
   color: #fff;
 }
 
-/*--------------------------------------------------------------
-# Header
---------------------------------------------------------------*/
-#headerimage.img-responsive {
-  height: auto;
-  margin: 0 5%;
-  width: 90%;
-}
+/*#header */
 
 #header {
-  transition: all 0.5s;
-  z-index: 997;
-  padding: 15px 0;
-  background-color: #000;
-  box-shadow: 0px 2px 25px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  position: relative;
+  margin-bottom: 15px;
 }
 
 #header .logo {
-  font-size: 30px;
-  margin: 0;
-  padding: 0;
-  line-height: 1em;
-  font-weight: 600;
-  letter-spacing: 1px;
-  font-family: "Cochin";
-  font-style: italic;
+  float: left;
 }
 
-#header .logo a {
-  color: #f7f7f7;
-}
-
-#header .logo img {
-  max-height: 40px;
-}
-
-@media (max-width: 992px) {
-  #header {
-    border: 0;
-  }
-}
-
-.nav-link {
-  color: #f7f7f7 !important;
-  text-decoration: none !important;
-  transition: all 0.5s ease-in-out 0s;
-}
-
-.nav-link:hover {
-  color: #0D4F8B !important;
-  transition: all 0.5s ease-in-out 0s;
-}
-
-/*--------------------------------------------------------------
-# Navigation Menu
---------------------------------------------------------------*/
-/* Desktop Navigation */
-.navbar {
-  padding: 0;
-}
-
-.navbar ul {
-  margin: 0;
-  padding: 0;
+#header ul {
+  float: left;
   display: flex;
   list-style: none;
-  align-items: center;
+  flex-wrap: wrap;
+  width: calc(100% - 350px);
+  justify-content: center;
+  padding: 0;
+  margin: 0;
 }
 
-.navbar li {
-  position: relative;
-}
-
-.navbar a {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 0 10px 30px;
-  font-family: "Cochin";
-  font-size: 20px;
+#header li {
+  margin-left: 10px;
   font-style: italic;
-  font-weight: 500;
-  color: #f7f7f7;
-  white-space: nowrap;
-  transition: 0.3s;
 }
 
-.navbar a i {
-  font-size: 12px;
-  line-height: 0;
-  margin-left: 5px;
+#header a {
+  color: var(--textcolor);
+  transition: color 1s;
 }
 
-.navbar a:hover, .navbar .active, .navbar li:hover > a {
-  color: #0D4F8B;
+#header a:hover {
+  color: var(--select);
 }
 
-/** * Mobile Navigation */
-.mobile-nav-toggle {
-  color: #f7f7f7;
-  font-size: 28px;
-  cursor: pointer;
-  display: none;
-  line-height: 0;
-  transition: 0.5s;
+#header nav img {
+  max-width: 200px;
+  padding-left: 25px;
+  margin: 0;
 }
 
-.mobile-nav-toggle.bi-x {
-  color: #f7f7f7;
+#header form {
+  height: 1em;
+  width: 100px;
+  padding: 0;
+  display: inline-block;
 }
 
-@media (max-width: 991px) {
-  .mobile-nav-toggle {
-    display: block;
-  }
-  .navbar ul {
-    display: none;
-  }
+#header form input {
+  height: 100%;
 }
 
-.navbar-mobile {
-  position: fixed;
-  overflow: hidden;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background: rgba(49, 49, 49, 0.9);
-  transition: 0.3s;
+.headerimage {
+  width: 100%;
 }
-
-.navbar-mobile .mobile-nav-toggle {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-}
-
-.navbar-mobile ul {
-  display: block;
-  position: absolute;
-  top: 55px;
-  right: 15px;
-  bottom: 15px;
-  left: 15px;
-  padding: 10px 0;
-  border-radius: 10px;
-  background-color: #000;
-  overflow-y: auto;
-  transition: 0.3s;
-  text-align: left;
-}
-
-.navbar-mobile a {
-  padding: 12% 0;
-  margin: 0 43%;
-  font-size: 36px;
-  color: #f7f7f7;
-}
-
-/*-----------------------------------------------------------------------------------*/
-/* BLOG
-/*-----------------------------------------------------------------------------------*/
-
 
 /*--------------------------------------------------------------
 # Footer
@@ -291,15 +232,4 @@ a:hover {
   font-size: 14px;
   text-align: right;
   font-weight: 100;
-}
-
-@media only screen and (max-width: 800px) {
-  .content, .index {
-    float: none;
-    clear: left;
-    width: 100%;
-  }
-  .index {
-    margin-top: 20px;
-  }
 }
