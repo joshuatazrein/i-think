@@ -62,7 +62,7 @@ p.link {
 }
 
 div {
-  padding: 0 10px;
+  padding: 10px;
 }
 
 #bibliography, #bookmarks {
@@ -76,7 +76,7 @@ div {
   height: 100%;
 }
 
-#bibliography li, #bookmarks li {
+#bibliography li, #bookmarks li, #bottom p {
   margin-bottom: 0.5em;
 }
 
