@@ -34,8 +34,11 @@
 
 main {
   height: 100vh;
-  width: calc(100vw - 40px);
-  margin: 0 20px;
+  width: 100vw;
+  overflow-x: hidden;
+  border-top: 1px solid var(--accent);
+  position: relative;
+  padding: 10px 0;
 }
 
 main > .middle > div {
@@ -43,9 +46,33 @@ main > .middle > div {
   height: 100%;
 }
 
+#searchbar {
+  font: var(--font);
+  font-size: 16px;
+  height: 18px;
+  width: calc(100% - 10px);
+  color: var(--foreground);
+  border: 1px solid var(--accent);
+  padding: 0;
+  margin-left: 5px;
+}
+
+#results {
+  height: 100vh;
+  position: absolute;
+  top: 35px;
+  left: 5px;
+  width: calc(20% - 15px);
+  margin: 0;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.8);
+  overflow: auto;
+}
+
 main .middle {
-  height: calc(100% - 44px);
+  height: 100%;
   width: 100%;
+  overflow-x: hidden;
 }
 
 ul {
@@ -57,26 +84,51 @@ p.link {
   margin: 0;
 }
 
-.statusbar p {
-  font-size: 18px;
+.container {
+  width: 20%;
+  overflow: hidden;
 }
 
-div {
-  padding: 10px;
+.header {
+  width: 100%;
+  height: 30px;
+  position: relative;
+  z-index: 1;
+  font-size: 24px;
+  line-height: 24px;
+  text-align: center;
+  padding: 6px 0 0 0;
+  margin: 0 0 6px 0;
+}
+
+.topborder {
+  border-top: 1px solid var(--accent);
 }
 
 #bibliography, #bookmarks {
-  width: 20%;
   font-size: 75%;
   line-height: 1.15em;
+  padding: 0 10px;
 }
 
-#container {
-  width: 60%;
-  height: 100%;
+#bibliography {
+  height: calc(66% - 36px);
 }
 
-#bibliography li, #bookmarks li, #bottom p {
+#bookmarks {
+  height: calc(66% - 66px);
+}
+
+#history, #backlinks {
+  height: calc(33% - 36px);
+  width: 100%;
+  overflow-y: auto;
+  font-size: 75%;
+  line-height: 1.15em;
+  padding: 0 10px;
+}
+
+#bibliography li, #bookmarks li, .container p {
   margin-bottom: 0.5em;
 }
 
@@ -85,23 +137,11 @@ main div:not(#container) {
 }
 
 #zettels {
-  width: 100%;
-  height: 80%;
-  background: var(--foreground);
-}
-
-#bottom {
-  width: 100%;
-  height: 20%;
-}
-
-#history, #backlinks {
+  width: 60%;
   height: 100%;
-  width: 50%;
-  float: left;
-  overflow-y: auto;
-  font-size: 75%;
-  line-height: 1.15em;
+  background: var(--foreground);
+  padding: 0 10px;
+  border-left: 1px solid var(--accent);
 }
 
 .statusbar {

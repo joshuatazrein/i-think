@@ -29,20 +29,24 @@
     </div>
   </header>
 	<main>
-    <div class='statusbar'>
-    </div>
+    <p id='results'></p>
     <div class='middle'>
-      <div id='bibliography'></div>
-      <div id='container'>
-        <div id='zettels'></div>
-        <div id='bottom'>
-          <div id='history'></div>
-          <div id='backlinks'></div>
+      <div class='container left'>
+        <input id='searchbar' placeholder=' search...'/>
+        <h3 class='header'>notes</h3>
+        <div id='bookmarks'></div>
+        <h3 class='header topborder'>references</h3>
+        <div id='backlinks'></div>
+      </div>
+      <div id='zettels'></div>
+      <div class='container'>
+        <h3 class='header'>sources</h3>
+        <div id='bibliography'>
+        </div>
+        <h3 class='header topborder'>history</h3>
+        <div id='history'>
         </div>
       </div>
-      <div id='bookmarks'></div>
-    </div>
-    <div class='statusbar'>
     </div>
   </main>
   <script src="./assets/js/blogscript.js"></script>
