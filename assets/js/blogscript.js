@@ -109,6 +109,7 @@ function setLinks(selector, tooltip) {
 function hideToolTip() {
   $('#tooltip').stop(true)
   $('#tooltip').hide(300)
+  clearTimeout(tooltiptimer)
 }
 
 function toolTip(ev) {

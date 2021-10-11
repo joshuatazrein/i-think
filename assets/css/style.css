@@ -47,6 +47,11 @@ main > .middle > div {
   height: 100%;
 }
 
+.date {
+  text-align: right;
+  font-style: italic;
+}
+
 #searchbar {
   font: var(--font);
   font-size: 16px;
@@ -213,6 +218,10 @@ body {
   display: none;
 }
 
+
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
+}
 
 h1 {
   font-weight: 600;
