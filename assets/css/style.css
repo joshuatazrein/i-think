@@ -7,6 +7,7 @@
   --accent: grey;
   --background: #000;
   --foreground: rgb(96, 102, 110);
+  --overlay: rgba(0, 0, 0, 0.8);
 }
 
 /* BLOG */
@@ -136,6 +137,18 @@ main div:not(#container) {
   overflow-y: scroll;
 }
 
+#tooltip {
+  width: 300px;
+  height: 200px;
+  background: var(--overlay);
+  font: var(--font);
+  font-size: 0.75em;
+  padding: 10px;
+  position: absolute;
+  overflow: auto;
+  z-index: 2;
+}
+
 #zettels {
   width: 60%;
   height: 100%;
@@ -208,6 +221,11 @@ h1 {
 h2 {
   font-weight: bold;
   font-size: 200%;
+}
+
+#tooltip h3 {
+  margin: 0;
+  padding: 0;
 }
 
 a {

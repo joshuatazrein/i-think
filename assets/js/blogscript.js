@@ -1,6 +1,7 @@
 var index = {};
 var found = [];
 var searches = [];
+var tooltiptimer;
 
 function updateLinks() {
   $.get(
@@ -56,9 +57,10 @@ function followLink(link, text, type) {
   $('#history').prepend('<p class="' + linkclass + '">' + link + '</p>');
   setLinks('#history');
   setLinks('#backlinks');
+  $('#tooltip').hide(300)
 }
 
-function setLinks(selector) {
+function setLinks(selector, tooltip) {
   if (!selector) selector = ''
   $(selector + ' .link').on('mouseup', function (ev) {
     let el = $(ev.target)
@@ -96,6 +98,63 @@ function setLinks(selector) {
       }
     );
   });
+  if (tooltip != false) {
+    $(selector + ' .b-link, ' + selector + ' .link').on('mouseover', 
+      function (ev) { tooltiptimer = setTimeout(toolTip, 1000, ev) })
+    $(selector + ' .b-link, ' + selector + ' .link').on('mouseleave', 
+      function (ev) { clearTimeout(tooltiptimer) })
+  }
+}
+
+function hideToolTip() {
+  $('#tooltip').stop(true)
+  $('#tooltip').hide(300)
+}
+
+function toolTip(ev) {
+  const el = $(ev.target)
+  let location
+  if (el.hasClass('link')) {
+    location = './z/'
+  } else if (el.hasClass('b-link')) {
+    location = './b/'
+  }
+  let title
+  if (el.attr('href')) {
+    title = el.attr('href')
+  } else {
+    title = el.text()
+  }
+  location += title + '.html'
+  $.get(location, 
+    function (s, m, xhr) {
+      if (!el.parents().toArray().includes($('#tooltip')[0])) {
+        // move tooltip
+        $('#tooltip').css('top', '')
+        $('#tooltip').css('left', '')
+        $('#tooltip').css('right', '')
+        $('#tooltip').css('bottom', '')
+        if (ev.clientY > window.innerHeight - $('#tooltip').height()) {
+          $('#tooltip').css('bottom', '10px')
+        } else {
+          $('#tooltip').css('top', Number(ev.clientY - 30) + 'px')
+        }
+        if (ev.clientX > window.innerWidth - $('#tooltip').width()) {
+          $('#tooltip').css('right', '10px')
+        } else {
+          $('#tooltip').css('left', Number(ev.clientX - 30) + 'px')
+        }
+      }
+      $('#tooltip').html(
+        '<h3>' + title + '</h3>' + 
+        xhr.responseText)
+      setLinks('#tooltip')
+      if (!el.parents().toArray().includes($('#tooltip')[0])) {
+        $('#tooltip').show(300)
+      }
+      $('#tooltip').scrollTop(0)
+    }
+  )
 }
 
 function updateBacklinks() {
@@ -185,3 +244,11 @@ updateLinks();
 setTimeout(selectRandom, 100)
 $('#searchbar').on('keydown', search)
 $(document).on('keydown', keyDown)
+hideToolTip()
+$('#tooltip').on('mouseleave', hideToolTip)
+$(document).on('mouseup', function (ev) {
+  if (ev.target != $('#tooltip')[0] && 
+    !$(ev.target).parents().toArray().includes($('#tooltip')[0])) {
+    hideToolTip() 
+  }
+})
