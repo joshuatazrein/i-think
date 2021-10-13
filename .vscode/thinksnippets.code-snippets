@@ -1,7 +1,7 @@
 {
 	"Link": {
 		"scope": "html",
-		"prefix": "<",
+		"prefix": "zh",
 		"body": [
 			"<span class='link'>$0</span>"
 		],
@@ -9,7 +9,7 @@
 	},
 	"Href Link": {
 		"scope": "html",
-		"prefix": "<h",
+		"prefix": "zl",
 		"body": [
 			"<span class='link' href='$0'></span>"
 		],
@@ -17,7 +17,7 @@
 	},
 	"Bibliography Link": {
 		"scope": "html",
-		"prefix": "<b",
+		"prefix": "bl",
 		"body": [
 			"<span class='b-link'>$0</span>"
 		],
@@ -25,12 +25,65 @@
 	},
 	"Href Bibliography Link": {
 		"scope": "html",
-		"prefix": "<bh",
+		"prefix": "bh",
 		"body": [
 			"<span class='b-link' href='$0'></span>"
 		],
 		"description": "bibiliography link with href",
-	}
+	},
+	"Bibliography Entry": {
+		"scope": "html",
+		"prefix": "bb",
+		"body": [
+			"<p>",
+			"  ",
+			"</p>",
+			"<h5></h5>",
+			"<ul>",
+			"  <li>$1</li>",
+			"</ul>",
+			"<p class='date'></p>",
+		],
+		"description": "bibliography body"
+	},
+	"Bibliography Section": {
+		"scope": "html",
+		"prefix": "bs",
+		"body": [
+			"<h5>$1</h5>",
+			"<ul>",
+			"  <li>$2</li>",
+			"</ul>",
+		],
+		"description": "bibliography body"
+	},
+	"Bibliography Note": {
+		"scope": "html",
+		"prefix": "bn",
+		"body": [
+			"\n<li><span class='page'>$1</span> $2</li>$0",
+		],
+		"description": "bibliography line"
+	},
+	"Zettel Entry": {
+		"scope": "html",
+		"prefix": "zb",
+		"body": [
+			"<p>",
+			"  $1",
+			"</p>",
+			"<p class='date'></p>",
+		],
+		"description": "zettel body"
+	},
+	"Page": {
+		"scope": "html",
+		"prefix": "#",
+		"body": [
+			"<span class='page'>$1</span> $2"
+		],
+		"description": "page number"
+	},
 	// Place your i-think workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
 	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
 	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
