@@ -267,11 +267,11 @@ function scanFullDir(masterDir) {
             // add in all subdirectories of list
             const subdir = [selectedDir + '/' + dir]
               .concat(scanDir(selectedDir + '/' + dir))
+            console.log(subdir);
             masterList.push(subdir)
           }
           return list
         },
-        async: false,
       }
     )
   }
