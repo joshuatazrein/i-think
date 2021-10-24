@@ -251,26 +251,25 @@ $(document).on('mouseup', function (ev) {
     hideToolTip() 
   }
 })
-function scanFullDir(startingDir) {
-  function scanDir(selectedDir) {
-    $.get('assets/php/listdir.php',
-      {dir: selectedDir},
-      function(a,s,xhr) {
-        // return full list
-        let list = JSON.parse(xhr.responseText).filter(x => {
-          return x.charAt(0) != '.'
-        })
-        for (dir of list.filter(x => { 
-          return x.slice(x.length - 5) != '.html'})) {
-          // add in all subdirectories of list
-          list = list.concat(scanDir(selectedDir + '/' + dir))
-        }
-        return list
+function scanDir(selectedDir) {
+  $.get('assets/php/listdir.php',
+    {dir: selectedDir},
+    function(a,s,xhr) {
+      // return full list
+      let list = JSON.parse(xhr.responseText).filter(x => {
+        return x.charAt(0) != '.'
+      })
+      console.log(list);
+      for (dir of list.filter(x => { 
+        return x.slice(x.length - 5) != '.html'})) {
+        // add in all subdirectories of list
+        list = list.concat(scanDir(selectedDir + '/' + dir))
+        console.log(list);
       }
-    )
-  }
-  return scanDir(startingDir);
+      return list
+    }
+  )
 }
-console.log(scanFullDir('../../z/'))
+console.log(scanDir('../../z/'))
 
 // try
