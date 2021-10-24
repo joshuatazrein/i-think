@@ -259,6 +259,7 @@ function scanFullDir(masterDir) {
         data: {dir: selectedDir},
         success: function(a,s,xhr) {
           // return full list
+          console.log(xhr.responseText);
           let list = JSON.parse(xhr.responseText).filter(x => {
             return x.charAt(0) != '.'
           })
@@ -291,7 +292,6 @@ function scanFullDir(masterDir) {
           scanDir(masterDir + '/' + list)
         }
       },
-      async: false,
     }
   )
 }
