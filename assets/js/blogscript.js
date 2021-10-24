@@ -187,14 +187,12 @@ function updateBacklinks() {
 function selectRandom() {
   const children = $('#bookmarks .link')
   const linkselect = Math.floor(Math.random() * children.length)
-  console.log(linkselect, children);
   $.get(
     './z/' + $(children[linkselect]).text() + '.html',
     function (s, m, xhr) {
       followLink($(children[linkselect]).text(), xhr.responseText, 'link')
     }
   )
-  console.log($(children[linkselect]).text());
 }
 
 function search(ev) {
