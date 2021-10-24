@@ -281,17 +281,19 @@ function scanDir(selectedDir, selectedList) {
       success: function(a,s,xhr) {
         // return full list
         var list = JSON.parse(xhr.responseText).filter(x => {
-          return x.charAt(0) != '.'
-        })
+          return x.charAt(0) != '.'})
+        var listObject = {
+          name: selectedDir,
+          contents: list.filter(x => 
+            { return x.slice(x.length - 5) == '.html' })
+        }
         // add to master list
-        selectedList.push([selectedDir].concat(list.filter(x => {
-          return x.slice(x.length - 5) == '.html'
-        })))
-        console.log(list, selectedList);
+        selectedList.contents.push(listObject)
+        console.log(listObject, selectedList);
         // scan all subdirectories of list
-        for (dir of list.filter(x => { 
+        for (dir of list.filter(x => {
           return x.slice(x.length - 5) != '.html'})) {
-          scanDir(selectedDir + '/' + dir, list)
+          scanDir(selectedDir + '/' + dir, listObject)
         }
       },
     }
