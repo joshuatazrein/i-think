@@ -295,12 +295,13 @@ function scanDir(selectedDir, selectedList) {
           return x.slice(x.length - 5) != '.html'})) {
           scanDir(selectedDir + '/' + dir, listObject)
         }
+        return listObject
       },
     }
   )
 }
 
-scanDir('../../z', {name: 'master', contents: []})
+var masterList = scanDir('../../z', {name: 'master', contents: []})
 setTimeout(function() {console.log(masterList);}, 1000)
 
 // try
