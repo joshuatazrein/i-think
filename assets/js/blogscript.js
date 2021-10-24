@@ -265,8 +265,8 @@ function scanFullDir(masterDir) {
           for (dir of list.filter(x => { 
             return x.slice(x.length - 5) != '.html'})) {
             // add in all subdirectories of list
-            const subdir = [selectedDir + dir + '/']
-              .concat(scanDir(selectedDir + dir + '/'))
+            const subdir = [selectedDir + '/' + dir]
+              .concat(scanDir(selectedDir + '/' + dir))
             masterList.push(subdir)
           }
           return list
@@ -288,7 +288,7 @@ function scanFullDir(masterDir) {
         for (list of masterList.filter(x => {
           return x.slice(x.length - 5) != '.html'})) {
           console.log(masterDir + list);
-          scanDir(masterDir + list)
+          scanDir(masterDir + '/' + list)
         }
       },
       async: false,
