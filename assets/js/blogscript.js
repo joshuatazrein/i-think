@@ -276,9 +276,6 @@ $(document).on('mouseup', function (ev) {
 
 function scanDir(selectedDir, selectedList) {
   if (doneloading) { clearTimeout(doneloading) }
-  doneloading = setTimeout(function () {
-    console.log(masterList)
-  }, 500)
   $.ajax('assets/php/listdir.php',
     {
       data: {dir: selectedDir},
@@ -293,12 +290,14 @@ function scanDir(selectedDir, selectedList) {
         }
         // add to master list
         selectedList.contents.push(listObject)
-        console.log(listObject, selectedList);
         // scan all subdirectories of list
         for (dir of list.filter(x => {
           return x.slice(x.length - 5) != '.html'})) {
           scanDir(selectedDir + '/' + dir, listObject)
         }
+        doneloading = setTimeout(function () {
+          console.log(masterList)
+        }, 500)
         return listObject
       },
     }
