@@ -252,24 +252,27 @@ $(document).on('mouseup', function (ev) {
   }
 })
 function scanDir(selectedDir) {
-  $.get('assets/php/listdir.php',
-    {dir: selectedDir},
-    function(a,s,xhr) {
-      // return full list
-      let list = JSON.parse(xhr.responseText).filter(x => {
-        return x.charAt(0) != '.'
-      })
-      console.log(list);
-      for (dir of list.filter(x => { 
-        return x.slice(x.length - 5) != '.html'})) {
-        // add in all subdirectories of list
-        const subdir = [selectedDir + dir + '/']
-          .concat(scanDir(selectedDir + dir + '/'))
-        console.log(subdir);
-        list.push(subdir)
+  $.ajax('assets/php/listdir.php',
+    {
+      data: {dir: selectedDir},
+      success: function(a,s,xhr) {
+        // return full list
+        let list = JSON.parse(xhr.responseText).filter(x => {
+          return x.charAt(0) != '.'
+        })
         console.log(list);
-      }
-      return list
+        for (dir of list.filter(x => { 
+          return x.slice(x.length - 5) != '.html'})) {
+          // add in all subdirectories of list
+          const subdir = [selectedDir + dir + '/']
+            .concat(scanDir(selectedDir + dir + '/'))
+          console.log(subdir);
+          list.push(subdir)
+          console.log(list);
+        }
+        return list
+      },
+      async: true,
     }
   )
 }
