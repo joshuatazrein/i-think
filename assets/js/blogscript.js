@@ -305,6 +305,7 @@ function scanDir(selectedDir, selectedList) {
   )
 }
 
+var doneloading = undefined
 var masterList = scanDir('../../z', {name: 'master', contents: []})
 
 // try
