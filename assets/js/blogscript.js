@@ -255,6 +255,7 @@ $.get('assets/php/listdir.php',
   {dir: "../../z/"},
   function(a,s,xhr) {
     const list = JSON.parse(xhr.responseText)
+    console.log(list);
   }
 ) 
 
