@@ -253,3 +253,9 @@ $(document).on('mouseup', function (ev) {
     hideToolTip() 
   }
 })
+$.ajax({
+  url: 'listdir.php',
+  success: function(data) {
+    console.log(data);
+  }
+})
