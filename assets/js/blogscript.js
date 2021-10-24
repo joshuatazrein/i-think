@@ -280,7 +280,6 @@ function scanDir(selectedDir, selectedList) {
       data: {dir: selectedDir},
       success: function(a,s,xhr) {
         // return full list
-        console.log(xhr.responseText);
         var list = JSON.parse(xhr.responseText).filter(x => {
           return x.charAt(0) != '.'
         })
@@ -288,7 +287,7 @@ function scanDir(selectedDir, selectedList) {
         selectedList.push([selectedDir].concat(list.filter(x => {
           return x.slice(x.length - 5) == '.html'
         })))
-        console.log(list);
+        console.log(list, selectedList);
         // scan all subdirectories of list
         for (dir of list.filter(x => { 
           return x.slice(x.length - 5) != '.html'})) {
