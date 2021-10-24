@@ -272,7 +272,7 @@ function scanDir(selectedDir) {
         }
         return list
       },
-      async: true,
+      async: false,
     }
   )
 }
