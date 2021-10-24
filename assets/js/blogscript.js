@@ -251,11 +251,11 @@ $(document).on('mouseup', function (ev) {
     hideToolTip() 
   }
 })
-$.ajax({
-  url: 'assets/php/listdir.php',
-  success: function(data) {
-    console.log(data);
+$.get('assets/php/listdir.php',
+  {dir: "../../z/"},
+  function(a,s,xhr) {
+    const list = JSON.parse(xhr.responseText)
   }
-}) 
+) 
 
 // try
