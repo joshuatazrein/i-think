@@ -275,6 +275,10 @@ $(document).on('mouseup', function (ev) {
 // }
 
 function scanDir(selectedDir, selectedList) {
+  if (doneloading) { clearTimeout(doneloading) }
+  doneloading = setTimeout(function () {
+    console.log(masterList)
+  }, 500)
   $.ajax('assets/php/listdir.php',
     {
       data: {dir: selectedDir},
@@ -302,6 +306,5 @@ function scanDir(selectedDir, selectedList) {
 }
 
 var masterList = scanDir('../../z', {name: 'master', contents: []})
-setTimeout(function() {console.log(masterList);}, 1000)
 
 // try
