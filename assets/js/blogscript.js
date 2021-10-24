@@ -263,15 +263,15 @@ function scanFullDir(masterDir) {
           let list = JSON.parse(xhr.responseText).filter(x => {
             return x.charAt(0) != '.'
           })
+          // add to master list
+          masterList.push([selectedDir].concat(list.filter(x => {
+            return x.slice(x.length - 5) == '.html'
+          })))
           for (dir of list.filter(x => { 
             return x.slice(x.length - 5) != '.html'})) {
             // add in all subdirectories of list
-            const subdir = [selectedDir + '/' + dir]
-              .concat(scanDir(selectedDir + '/' + dir))
-            console.log(subdir);
-            masterList.push(subdir)
+            scanDir(selectedDir + '/' + dir)
           }
-          return list
         },
       }
     )
