@@ -263,7 +263,10 @@ function scanDir(selectedDir) {
       for (dir of list.filter(x => { 
         return x.slice(x.length - 5) != '.html'})) {
         // add in all subdirectories of list
-        list = list.concat(scanDir(selectedDir + '/' + dir))
+        const subdir = [selectedDir + dir + '/']
+          .concat(scanDir(selectedDir + dir + '/'))
+        console.log(subdir);
+        list.push(subdir)
         console.log(list);
       }
       return list
