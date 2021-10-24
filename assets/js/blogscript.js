@@ -300,8 +300,7 @@ function scanDir(selectedDir, selectedList) {
   )
 }
 
-masterList = []
-scanDir('../../z', masterList)
+scanDir('../../z', {name: 'master', contents: []})
 setTimeout(function() {console.log(masterList);}, 1000)
 
 // try
