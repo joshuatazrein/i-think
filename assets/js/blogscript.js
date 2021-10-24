@@ -287,7 +287,7 @@ function scanFullDir(masterDir) {
         masterList = list
         for (list of masterList.filter(x => {
           return x.slice(x.length - 5) != '.html'})) {
-          console.log(masterDir + list);
+          console.log(masterDir + '/' + list);
           scanDir(masterDir + '/' + list)
         }
       },
