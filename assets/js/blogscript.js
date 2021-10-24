@@ -251,31 +251,51 @@ $(document).on('mouseup', function (ev) {
     hideToolTip() 
   }
 })
-function scanDir(selectedDir) {
+
+function scanFullDir(masterDir) {
+  function scanDir(selectedDir) {
+    $.ajax('assets/php/listdir.php',
+      {
+        data: {dir: selectedDir},
+        success: function(a,s,xhr) {
+          // return full list
+          let list = JSON.parse(xhr.responseText).filter(x => {
+            return x.charAt(0) != '.'
+          })
+          for (dir of list.filter(x => { 
+            return x.slice(x.length - 5) != '.html'})) {
+            // add in all subdirectories of list
+            const subdir = [selectedDir + dir + '/']
+              .concat(scanDir(selectedDir + dir + '/'))
+            masterList.push(subdir)
+          }
+          return list
+        },
+        async: false,
+      }
+    )
+  }
+  // scan master list
   $.ajax('assets/php/listdir.php',
     {
-      data: {dir: selectedDir},
+      data: {dir: masterDir},
       success: function(a,s,xhr) {
         // return full list
         let list = JSON.parse(xhr.responseText).filter(x => {
           return x.charAt(0) != '.'
         })
-        console.log(list);
-        for (dir of list.filter(x => { 
-          return x.slice(x.length - 5) != '.html'})) {
-          // add in all subdirectories of list
-          const subdir = [selectedDir + dir + '/']
-            .concat(scanDir(selectedDir + dir + '/'))
-          console.log(subdir);
-          list.push(subdir)
-          console.log(list);
+        masterList = list
+        for (list of masterList) {
+          scanDir(list)
         }
-        return list
       },
       async: false,
     }
   )
 }
-console.log(scanDir('../../z/'))
+
+masterList = []
+scanFullDir('../../z')
+setTimeout(function() {console.log(masterList);}, 1000)
 
 // try
