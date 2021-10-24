@@ -252,7 +252,7 @@ $(document).on('mouseup', function (ev) {
   }
 })
 $.ajax({
-  url: '../php/listdir.php',
+  url: 'assets/php/listdir.php',
   success: function(data) {
     console.log(data);
   }
