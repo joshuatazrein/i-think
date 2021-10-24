@@ -252,44 +252,46 @@ $(document).on('mouseup', function (ev) {
   }
 })
 
-function scanFullDir(masterDir) {
-  function scanDir(selectedDir) {
-    $.ajax('assets/php/listdir.php',
-      {
-        data: {dir: selectedDir},
-        success: function(a,s,xhr) {
-          // return full list
-          console.log(xhr.responseText);
-          let list = JSON.parse(xhr.responseText).filter(x => {
-            return x.charAt(0) != '.'
-          })
-          // add to master list
-          masterList.push([selectedDir].concat(list.filter(x => {
-            return x.slice(x.length - 5) == '.html'
-          })))
-          for (dir of list.filter(x => { 
-            return x.slice(x.length - 5) != '.html'})) {
-            // add in all subdirectories of list
-            scanDir(selectedDir + '/' + dir)
-          }
-        },
-      }
-    )
-  }
-  // scan master list
+// function scanFullDir(masterDir, masterList) {
+  
+//   // scan master list
+//   $.ajax('assets/php/listdir.php',
+//     {
+//       data: {dir: masterDir},
+//       success: function(a,s,xhr) {
+//         // return full list
+//         let list = JSON.parse(xhr.responseText).filter(x => {
+//           return x.charAt(0) != '.'
+//         })
+//         masterList = list
+//         for (list of masterList.filter(x => {
+//           return x.slice(x.length - 5) != '.html'})) {
+//           console.log(masterDir + '/' + list);
+//           scanDir(masterDir + '/' + list)
+//         }
+//       },
+//     }
+//   )
+// }
+
+function scanDir(selectedDir, selectedList) {
   $.ajax('assets/php/listdir.php',
     {
-      data: {dir: masterDir},
+      data: {dir: selectedDir},
       success: function(a,s,xhr) {
         // return full list
+        console.log(xhr.responseText);
         let list = JSON.parse(xhr.responseText).filter(x => {
           return x.charAt(0) != '.'
         })
-        masterList = list
-        for (list of masterList.filter(x => {
+        // add to master list
+        selectedList.push([selectedDir].concat(list.filter(x => {
+          return x.slice(x.length - 5) == '.html'
+        })))
+        // scan all subdirectories of list
+        for (dir of list.filter(x => { 
           return x.slice(x.length - 5) != '.html'})) {
-          console.log(masterDir + '/' + list);
-          scanDir(masterDir + '/' + list)
+          scanDir(selectedDir + '/' + dir, list)
         }
       },
     }
@@ -297,7 +299,7 @@ function scanFullDir(masterDir) {
 }
 
 masterList = []
-scanFullDir('../../z')
+scanDir('../../z', masterList)
 setTimeout(function() {console.log(masterList);}, 1000)
 
 // try
