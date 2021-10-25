@@ -260,37 +260,33 @@ function assembleList(masterDir, type) {
     if (doneloading) clearTimeout(doneloading)
     let returnlist
     let finalList
-    let myPromise = new Promise(function(resolve) {
-      $.ajax('assets/php/listdir.php',
-        {
-          data: {dir: selectedDir},
-          success: function(a,s,xhr) {
-            // return full list
-            var list = JSON.parse(xhr.responseText).filter(x => {
-              return x.charAt(0) != '.'})
-            var listObject = {
-              name: selectedDir,
-              contents: list.filter(x => 
-                { return x.slice(x.length - 5) == '.html' })
-            }
-            // add to master list
-            selectedList.contents.push(listObject)
-            // start scan
-            doneloading = setTimeout(function() {
-              finalList = formatList(masterList)
-            }, 500)
-            // scan all subdirectories of list
-            for (dir of list.filter(x => {
-              return x.slice(x.length - 5) != '.html'})) {
-              scanDir(selectedDir + '/' + dir, listObject)
-            }
-            return myObject
-          },
-          async: false,
-        }
-      )
-    })
-    return await myPromise
+    $.ajax('assets/php/listdir.php',
+      {
+        data: {dir: selectedDir},
+        success: function(a,s,xhr) {
+          // return full list
+          var list = JSON.parse(xhr.responseText).filter(x => {
+            return x.charAt(0) != '.'})
+          var listObject = {
+            name: selectedDir,
+            contents: list.filter(x => 
+              { return x.slice(x.length - 5) == '.html' })
+          }
+          // add to master list
+          selectedList.contents.push(listObject)
+          // start scan
+          doneloading = setTimeout(function() {
+            finalList = formatList(masterList)
+          }, 500)
+          // scan all subdirectories of list
+          for (dir of list.filter(x => {
+            return x.slice(x.length - 5) != '.html'})) {
+            scanDir(selectedDir + '/' + dir, listObject)
+          }
+        },
+        async: false,
+      }
+    )
   }
   function formatList(listObject, level) {
     console.log(listObject);
