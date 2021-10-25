@@ -272,14 +272,15 @@ function assembleList(masterDir) {
           }
           // add to master list
           selectedList.contents.push(listObject)
+          // start scan
+          doneloading = setTimeout(function () {
+            assembleList()
+          }, 1000)
           // scan all subdirectories of list
           for (dir of list.filter(x => {
             return x.slice(x.length - 5) != '.html'})) {
             scanDir(selectedDir + '/' + dir, listObject)
           }
-          doneloading = setTimeout(function () {
-            assembleList()
-          }, 1000)
           returnlist = listObject
         },
         async: false,
