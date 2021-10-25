@@ -255,7 +255,7 @@ $(document).on('mouseup', function (ev) {
 function assembleList(masterDir, type) {
   var doneloading = undefined
   // scans a directory to generate an object
-  function scanDir(selectedDir, selectedList) {
+  async function scanDir(selectedDir, selectedList) {
     if (doneloading) clearTimeout(doneloading)
     let myPromise = new Promise(function(resolve) {
       $.ajax('assets/php/listdir.php',
@@ -284,7 +284,7 @@ function assembleList(masterDir, type) {
         }
       )
     })
-    const thing = await myPromise
+    const thing = await myPromise;
     return thing
   }
   function formatList(listObject, level) {
