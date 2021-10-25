@@ -298,6 +298,7 @@ function scanDir(selectedDir, selectedList) {
         }
         mylist = listObject
       },
+      async: false,
     }
   )}).then(function() { 
     console.log(mylist);
