@@ -342,11 +342,11 @@ const notesInterval = setInterval(function() {
     $('#bookmarks').html(notesList)
     clearInterval(notesInterval)
   }
-})
+}, 500)
 const sourcesInterval = setInterval(function() {
   // sources
   if (sourcesList) {
     $('#bibliography').html(sourcesList)
     clearInterval(sourcesInterval)
   }
-})
+}, 500)
