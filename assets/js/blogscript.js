@@ -2,28 +2,9 @@ var index = {};
 var found = [];
 var searches = [];
 var tooltiptimer;
+var dirIndex = {};
 
-function updateLinks() {
-  $.get(
-    'bookmarks.html',
-    function(message, status, xhr) {
-      $('#bookmarks').html(xhr.responseText);
-      setLinks('#bookmarks');
-      $('#bookmarks').append('<p class="buffer"></p>');
-      updateBacklinks();
-    }
-  );
-  
-  $.get(
-    'bibliography.html',
-    function(message, status, xhr) {
-      $('#bibliography').html(xhr.responseText);
-      setLinks('#bibliography')
-    }
-  );
-}
-
-function followLink(link, text, type) {
+function followLink(link, text) {
   let frame
   let linkclass
   if (type == 'link') {
@@ -61,8 +42,10 @@ function followLink(link, text, type) {
 }
 
 function setLinks(selector, tooltip) {
+  // sets links as clickable
   if (!selector) selector = ''
-  $(selector + ' .link').on('mouseup', function (ev) {
+  $(selector + ' .link, ' + selector + ' .b-link').on(
+    'mouseup', function (ev) {
     let el = $(ev.target)
     while (!['SPAN', 'P'].includes(el[0].tagName)) {
       el = el.parent()
@@ -74,27 +57,9 @@ function setLinks(selector, tooltip) {
       link = el.text()
     }
     $.get(
-      'z/' + link + '.html',
+      dirIndex[link],
       function (t, s, xhr) {
         followLink(link, xhr.responseText, 'link')
-      }
-    );
-  });
-  $(selector + ' .b-link').on('mouseup', function (ev) {
-    let link
-    let el = $(ev.target)
-    while (!['SPAN', 'P'].includes(el[0].tagName)) {
-      el = el.parent()
-    }
-    if (el.attr('href')) {
-      link = el.attr('href')
-    } else {
-      link = el.text()
-    }
-    $.get(
-      'b/' + link + '.html',
-      function (t, s, xhr) {
-        followLink(link, xhr.responseText, 'b-link')
       }
     );
   });
@@ -269,6 +234,29 @@ function assembleList(masterDir, type) {
               name: selectedDir,
               contents: list.filter(x => 
                 { return x.slice(x.length - 5) == '.html' })
+            }
+            for (x of listObject.contents) {
+              // update links
+              const title = $(x).text();
+              // add correct link to directory links
+              dirIndex[title] = selectedDir + '/' + title + '.html'
+              $.get(selectedDir + '/' + title + '.html', 
+              function (s, m, xhr) {
+                // find all backlinks
+                $('#test').html(xhr.responseText);
+                searches.push([title, $('#test').text()])
+                $('#test').find('.link').toArray().forEach(y => {
+                  // add link text
+                  const el = $(y);
+                  let text;
+                  if (el.attr('href')) { text = el.attr('href') }
+                  else { text = el.text() }
+                  // add to dict: [article], [backlinks]
+                  if (!index[text]) { index[text] = [title]}
+                  else { index[text].push(title) }
+                })
+                found = searches.concat()
+              })
             }
             // add to master list
             selectedList.contents.push(listObject)
