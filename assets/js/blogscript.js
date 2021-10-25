@@ -14,6 +14,7 @@ function followLink(link, text) {
     frame = '#bibliography'
   }
   $('#zettels').html('<h4>' + link + '</h4>' + text);
+  $('#backlinks').empty()
   if (index[link]) {
     $('#backlinks').html(
       // list of backlinks
