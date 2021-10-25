@@ -231,7 +231,7 @@ function assembleList(masterDir, type) {
               const title = x;
               // add correct link to directory links: strip leading punc.
               let dir = selectedDir.replace(/^[\.\/]+/, '')
-              dirIndex[title] = dir + '/' + title.slice(0, title.length - 5)
+              dirIndex[title.slice(0, title.length - 5)] = dir + '/' + title
               $.get(dir + '/' + title, 
               function (s, m, xhr) {
                 // find all backlinks
