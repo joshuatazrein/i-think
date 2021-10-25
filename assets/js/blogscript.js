@@ -264,7 +264,7 @@ function assembleList(masterDir) {
     for (entry of list.contents.filter(x => 
       { return typeof x === 'object' })) {
       // scan objects and add them to the list
-      joinList.push(formatList(entry), level + 1)
+      joinList.push(formatList(entry, level + 1))
     }
     return joinList.join('')
   }
@@ -286,7 +286,7 @@ function assembleList(masterDir) {
 var notesList
 var sourcesList
 
-// try
+// make lists
 assembleList('../../z')
 assembleList('../../b')
 
