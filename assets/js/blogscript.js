@@ -257,8 +257,6 @@ function assembleList(masterDir, type) {
   // scans a directory to generate an object
   function scanDir(selectedDir, selectedList) {
     if (doneloading) clearTimeout(doneloading)
-    let returnlist
-    let finalList
     $.ajax('assets/php/listdir.php',
       {
         data: {dir: selectedDir},
@@ -275,12 +273,8 @@ function assembleList(masterDir, type) {
           selectedList.contents.push(listObject)
           // update the scan - RETURN on function
           doneloading = setTimeout(function() {
-            if (type == 'link') {
-              notesList = formatList(masterList)
-            } else if (type == 'b-link') {
-              sourcesList = formatList(masterList)
-            }
             console.log(masterList);
+            notesList = masterList
           }, 500)
           // scan all subdirectories of list
           for (dir of list.filter(x => {
@@ -325,3 +319,10 @@ var sourcesList
 
 // try
 assembleList('../../z', 'link')
+
+const notesInterval = setInterval(function() {
+  if (notesList) {
+    console.log(notesList);
+    clearInterval(notesInterval)
+  }
+})
