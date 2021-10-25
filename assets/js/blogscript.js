@@ -295,13 +295,15 @@ function assembleList(masterDir) {
   let masterList = scanDir(masterDir, {name: 'master', contents: []})
   setTimeout(function () {
     masterList.then((result) => 
-    { if (/z\//.test(masterDir)) {
-      notesList = formatList(result, 'init') 
-    } else if (/b\//.test(masterDir)) {
-      sourcesList = formatList(result, 'init')
-    }}), 1000 
+    {
+      console.log(masterDir, result);
+      if (/z\//.test(masterDir)) {
+        notesList = formatList(result, 'init') 
+      } else if (/b\//.test(masterDir)) {
+        sourcesList = formatList(result, 'init')
+      }
+    }), 1000 
   })
-  return masterList
 }
 
 var notesList
