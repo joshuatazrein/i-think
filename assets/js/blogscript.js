@@ -274,7 +274,7 @@ function assembleList(masterDir, type) {
           selectedList.contents.push(listObject)
           // start scan
           doneloading = setTimeout(function () {
-            console.log(formatList(masterList))
+            return formatList(masterList)
           }, 1000)
           // scan all subdirectories of list
           for (dir of list.filter(x => {
@@ -300,19 +300,19 @@ function assembleList(masterDir, type) {
     for (entry of listObject.contents.filter(
       x => { return typeof x != 'object' })) {
       // push entries onto list
-      joinList.push('<span class="' + type + '">' + entry.slice(0, entry.length - 5) + 
-        '</span>')
+      joinList.push('<span class="' + type + '">' + entry.slice(0, entry.length - 5) + '</span>')
     }
     for (entry of listObject.contents.filter(x => 
       { return typeof x === 'object' })) {
       // scan objects and add them to the list
       joinList.push(formatList(entry))
     }
-    console.log(joinList);
+    console.log(joinList)
     return joinList.join('')
   }
   let masterList = scanDir(masterDir, {name: 'master', contents: []})
+  return masterList
 }
 
 // try
-console.log(assembleList('../../z'))
+console.log(assembleList('../../z', 'link'))
