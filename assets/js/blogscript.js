@@ -252,7 +252,7 @@ $(document).on('mouseup', function (ev) {
   }
 })
 
-function assembleList(masterDir) {
+function assembleList(masterDir, type) {
   var doneloading = undefined
   // scans a directory to generate an object
   function scanDir(selectedDir, selectedList) {
@@ -274,7 +274,7 @@ function assembleList(masterDir) {
           selectedList.contents.push(listObject)
           // start scan
           doneloading = setTimeout(function () {
-            assembleList()
+            return formatList(masterList)
           }, 1000)
           // scan all subdirectories of list
           for (dir of list.filter(x => {
@@ -288,12 +288,27 @@ function assembleList(masterDir) {
     )
     return returnlist
   }
-  // assemble list from scanned directory
-  function assembleList() {
-    console.log(masterList)
+  function formatList(listObject, level) {
+    // formats list of a single object
+    if (level == 3) {
+      let joinList = ['<h3>' + listObject.title + '</h3>']
+    } else {
+      let joinList = ['<h4>' + listObject.title + '</h4>']
+    }
+    for (entry of listObject.filter(x => { return typeof x != 'object' })) {
+      // push entries onto list
+      joinList.push('<' + type + '>' + entry.slice(0, entry.length - 5) + 
+        '</' + type + '>')
+    }
+    for (entry of listObject.filter(x => 
+      { return typeof x === 'object' })) {
+      // scan objects and add them to the list
+      joinList.push(formatList(entry))
+    }
+    return joinList.join('')
   }
-  let masterList = scanDir('../../z', {name: 'master', contents: []})
+  let masterList = scanDir(masterDir, {name: 'master', contents: []})
 }
 
 // try
-assembleList('../../z')
+console.log(assembleList('../../z'))
