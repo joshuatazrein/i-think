@@ -324,6 +324,7 @@ const notesInterval = setInterval(function() {
   if (notesList) {
     $('#bookmarks').html(notesList)
     clearInterval(notesInterval)
+    setLinks('#bookmarks')
   }
 }, 500)
 const sourcesInterval = setInterval(function() {
@@ -331,6 +332,7 @@ const sourcesInterval = setInterval(function() {
   if (sourcesList) {
     $('#bibliography').html(sourcesList)
     clearInterval(sourcesInterval)
+    setLinks('#bibliography')
   }
 }, 500)
 
@@ -346,5 +348,3 @@ $(document).on('mouseup', function (ev) {
     hideToolTip() 
   }
 })
-setLinks('#bookmarks')
-setLinks('#bibliography')
