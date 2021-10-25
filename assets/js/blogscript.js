@@ -275,9 +275,8 @@ $(document).on('mouseup', function (ev) {
 // }
 
 function scanDir(selectedDir, selectedList) {
-  var mylist
-  new Promise(function () {
-    $.ajax('assets/php/listdir.php',
+  let returnlist
+  $.ajax('assets/php/listdir.php',
     {
       data: {dir: selectedDir},
       success: function(a,s,xhr) {
@@ -296,16 +295,15 @@ function scanDir(selectedDir, selectedList) {
           return x.slice(x.length - 5) != '.html'})) {
           scanDir(selectedDir + '/' + dir, listObject)
         }
-        mylist = listObject
+        doneloading = setTimeout(function () {
+          console.log(masterList)
+        }, 500)
+        returnlist = listObject
       },
       async: false,
     }
-  )}, function () {
-    console.log('bad timing buddy')
-  }).then(function() { 
-    console.log(mylist);
-    return mylist 
-  })
+  )
+  return returnlist
 }
 
 var doneloading = undefined
