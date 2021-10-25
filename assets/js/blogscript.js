@@ -291,7 +291,6 @@ function assembleList(masterDir, type) {
     console.log(list);
     // formats list of a single object
     let joinList
-    if (!level) level = 3
     if (level == 'init') {
       joinList = []
       level = 2
@@ -301,12 +300,13 @@ function assembleList(masterDir, type) {
     } else if (level == 5) {
       joinList = ['<h5>' + list.name.slice(list.name.lastIndexOf('/') + 1) + 
         '</h5>']
-    } else if (level == 6) {
+    } else if (level >= 6) {
       joinList = ['<h6>' + list.name.slice(list.name.lastIndexOf('/') + 1) + 
         '</h6>']
     } else {
       joinList = ['<h3>' + list.name.slice(list.name.lastIndexOf('/') + 1) + 
         '</h3>']
+      level = 3
     }
     for (entry of list.contents.filter(
       x => { return typeof x != 'object' })) {
@@ -323,8 +323,9 @@ function assembleList(masterDir, type) {
   // do thing
   let masterList = scanDir(masterDir, {name: 'master', contents: []})
   setTimeout(function () {
-    masterList.then((result) => { console.log(
-      formatList(result, 'init')) }) }, 1000);
+    masterList.then((result) => 
+    { notesList = formatList(result, 'init') }), 1000 
+  })
   return masterList
 }
 
@@ -333,10 +334,19 @@ var sourcesList
 
 // try
 assembleList('../../z', 'link')
+assembleList('../../b', 'b-link')
 
 const notesInterval = setInterval(function() {
+  // notes
   if (notesList) {
-    console.log(notesList);
+    $('#bookmarks').html(notesList)
     clearInterval(notesInterval)
+  }
+})
+const sourcesInterval = setInterval(function() {
+  // sources
+  if (sourcesList) {
+    $('#bibliography').html(sourcesList)
+    clearInterval(sourcesInterval)
   }
 })
