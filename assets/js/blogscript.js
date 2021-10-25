@@ -297,6 +297,7 @@ function assembleList(masterDir, type) {
     // formats list of a single object
     let joinList
     console.log(listObject);
+    console.trace()
     if (level == 3) {
       joinList = ['<h3>' + listObject.title + '</h3>']
     } else {
