@@ -300,7 +300,9 @@ function scanDir(selectedDir, selectedList) {
       },
       async: false,
     }
-  )}).then(function() { 
+  )}, function () {
+    console.log('bad timing buddy')
+  }).then(function() { 
     console.log(mylist);
     return mylist 
   })
