@@ -254,7 +254,6 @@ $(document).on('mouseup', function (ev) {
 
 function assembleList(masterDir, type) {
   var doneloading = undefined
-  let finalList
   // scans a directory to generate an object
   function scanDir(selectedDir, selectedList) {
     if (doneloading) clearTimeout(doneloading)
@@ -297,6 +296,7 @@ function assembleList(masterDir, type) {
     console.log(listObject);
     // formats list of a single object
     let joinList
+    console.log(listObject);
     if (level == 3) {
       joinList = ['<h3>' + listObject.title + '</h3>']
     } else {
