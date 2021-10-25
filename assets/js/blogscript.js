@@ -311,7 +311,7 @@ function assembleList(masterDir, type) {
     for (entry of list.contents.filter(
       x => { return typeof x != 'object' })) {
       // push entries onto list
-      joinList.push('<span class="' + type + '">' + entry.slice(0, entry.length - 5) + '</span>')
+      joinList.push('<p class="' + type + '">' + entry.slice(0, entry.length - 5) + '</p>')
     }
     for (entry of list.contents.filter(x => 
       { return typeof x === 'object' })) {
@@ -324,7 +324,11 @@ function assembleList(masterDir, type) {
   let masterList = scanDir(masterDir, {name: 'master', contents: []})
   setTimeout(function () {
     masterList.then((result) => 
-    { notesList = formatList(result, 'init') }), 1000 
+    { if (type == 'link') {
+      notesList = formatList(result, 'init') 
+    } else if (type == 'b-link') {
+      sourcesList = formatList(result, 'init')
+    }}), 1000 
   })
   return masterList
 }
