@@ -252,61 +252,47 @@ $(document).on('mouseup', function (ev) {
   }
 })
 
-// function scanFullDir(masterDir, masterList) {
-  
-//   // scan master list
-//   $.ajax('assets/php/listdir.php',
-//     {
-//       data: {dir: masterDir},
-//       success: function(a,s,xhr) {
-//         // return full list
-//         let list = JSON.parse(xhr.responseText).filter(x => {
-//           return x.charAt(0) != '.'
-//         })
-//         masterList = list
-//         for (list of masterList.filter(x => {
-//           return x.slice(x.length - 5) != '.html'})) {
-//           console.log(masterDir + '/' + list);
-//           scanDir(masterDir + '/' + list)
-//         }
-//       },
-//     }
-//   )
-// }
-
-function scanDir(selectedDir, selectedList) {
-  let returnlist
-  $.ajax('assets/php/listdir.php',
-    {
-      data: {dir: selectedDir},
-      success: function(a,s,xhr) {
-        // return full list
-        var list = JSON.parse(xhr.responseText).filter(x => {
-          return x.charAt(0) != '.'})
-        var listObject = {
-          name: selectedDir,
-          contents: list.filter(x => 
-            { return x.slice(x.length - 5) == '.html' })
-        }
-        // add to master list
-        selectedList.contents.push(listObject)
-        // scan all subdirectories of list
-        for (dir of list.filter(x => {
-          return x.slice(x.length - 5) != '.html'})) {
-          scanDir(selectedDir + '/' + dir, listObject)
-        }
-        doneloading = setTimeout(function () {
-          console.log(masterList)
-        }, 500)
-        returnlist = listObject
-      },
-      async: false,
-    }
-  )
-  return returnlist
+function assembleList(masterDir) {
+  var doneloading = undefined
+  // scans a directory to generate an object
+  function scanDir(selectedDir, selectedList) {
+    if (doneloading) clearTimeout(doneloading)
+    let returnlist
+    $.ajax('assets/php/listdir.php',
+      {
+        data: {dir: selectedDir},
+        success: function(a,s,xhr) {
+          // return full list
+          var list = JSON.parse(xhr.responseText).filter(x => {
+            return x.charAt(0) != '.'})
+          var listObject = {
+            name: selectedDir,
+            contents: list.filter(x => 
+              { return x.slice(x.length - 5) == '.html' })
+          }
+          // add to master list
+          selectedList.contents.push(listObject)
+          // scan all subdirectories of list
+          for (dir of list.filter(x => {
+            return x.slice(x.length - 5) != '.html'})) {
+            scanDir(selectedDir + '/' + dir, listObject)
+          }
+          doneloading = setTimeout(function () {
+            assembleList()
+          }, 1000)
+          returnlist = listObject
+        },
+        async: false,
+      }
+    )
+    return returnlist
+  }
+  // assemble list from scanned directory
+  function assembleList() {
+    console.log(masterList)
+  }
+  let masterList = scanDir('../../z', {name: 'master', contents: []})
 }
 
-var doneloading = undefined
-var masterList = scanDir('../../z', {name: 'master', contents: []})
-
 // try
+assembleList('../../z')
