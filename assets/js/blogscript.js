@@ -7,10 +7,10 @@ var dirIndex = {};
 function followLink(link, text) {
   let frame
   let linkclass
-  if (type == 'link') {
+  if (dirIndex[link].test(/^z\//)) {
     frame = '#bookmarks'
     linkclass = 'link'
-  } else if (type == 'b-link') {
+  } else if (dirIndex[link].test(/^b\//)) {
     frame = '#bibliography'
     linkclass = 'b-link'
   }
