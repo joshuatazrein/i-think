@@ -254,7 +254,6 @@ $(document).on('mouseup', function (ev) {
 
 async function assembleList(masterDir, type) {
   var doneloading = undefined
-  var finalList
   // scans a directory to generate an object
   function scanDir(selectedDir, selectedList) {
     if (doneloading) clearTimeout(doneloading)
@@ -316,7 +315,7 @@ async function assembleList(masterDir, type) {
     return joinList.join('')
   }
   let masterList = scanDir(masterDir, {name: 'master', contents: []})
-  return await returnList
+  returnList = await finalList
 }
 
 // try
