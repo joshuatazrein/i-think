@@ -5,7 +5,6 @@ var tooltiptimer;
 var dirIndex = {};
 
 function followLink(link, text) {
-  console.trace()
   let frame
   let linkclass = 'link'
   console.log(link, dirIndex[link]);
@@ -123,13 +122,10 @@ function toolTip(ev) {
 function selectRandom() {
   const children = $('#bookmarks .link')
   const linkselect = Math.floor(Math.random() * children.length)
-  console.log($(children[linkselect]));
-  $(children[linkselect]).click()
-  // console.log(children[linkselect]);
-  // $.get(dirIndex[$(children[linkselect]).text()], function(s,a,xhr) {
-  //   console.log(xhr.responseText);
-  //   $('#zettels').html(xhr.responseText)
-  // })
+  console.log(children[linkselect]);
+  $.get(dirIndex[$(children[linkselect]).text()], function(s, a, xhr) {
+    followLink($(children[linkselect]).text(), xhr.responseText)
+  })
 }
 
 function search(ev) {
