@@ -252,7 +252,7 @@ $(document).on('mouseup', function (ev) {
   }
 })
 
-function assembleList(masterDir, type) {
+async function assembleList(masterDir, type) {
   var doneloading = undefined
   var finalList
   // scans a directory to generate an object
@@ -274,10 +274,13 @@ function assembleList(masterDir, type) {
           // add to master list
           selectedList.contents.push(listObject)
           // start scan
-          doneloading = setTimeout(function () {
-            // sets final return value
-            finalList = formatList(masterList)
-          }, 1000)
+          // sets final return value
+          finalList = new Promise(function(resolve) {
+            // returns when resolved
+            doneloading = setTimeout(function() {
+              resolve(formatList(masterList))
+            }, 500)
+          })
           // scan all subdirectories of list
           for (dir of list.filter(x => {
             return x.slice(x.length - 5) != '.html'})) {
@@ -313,7 +316,7 @@ function assembleList(masterDir, type) {
     return joinList.join('')
   }
   let masterList = scanDir(masterDir, {name: 'master', contents: []})
-  return finalList
+  return await returnList
 }
 
 // try
