@@ -298,7 +298,7 @@ const notesInterval = setInterval(function() {
     $('#bookmarks').html(notesList)
     clearInterval(notesInterval)
     setLinks('#bookmarks')
-    selectRandom()
+    setTimeout(selectRandom, 500)
   }
 }, 500)
 const sourcesInterval = setInterval(function() {
