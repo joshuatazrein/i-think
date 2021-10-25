@@ -122,7 +122,7 @@ function toolTip(ev) {
 function selectRandom() {
   const children = $('#bookmarks .link')
   const linkselect = Math.floor(Math.random() * children.length)
-  $(children[linkselect]).click()
+  $(children[linkselect]).trigger('mouseup')
 }
 
 function search(ev) {
@@ -292,7 +292,6 @@ const notesInterval = setInterval(function() {
     $('#bookmarks').html(notesList)
     clearInterval(notesInterval)
     setLinks('#bookmarks')
-    selectRandom()
   }
 }, 500)
 const sourcesInterval = setInterval(function() {
