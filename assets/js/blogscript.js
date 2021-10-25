@@ -284,7 +284,8 @@ function assembleList(masterDir, type) {
         }
       )
     })
-    return await myPromise
+    const thing = await myPromise
+    return thing
   }
   function formatList(listObject, level) {
     console.log(listObject);
