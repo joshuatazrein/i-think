@@ -8,7 +8,7 @@ function followLink(link, text) {
   let frame
   let linkclass
   console.log(link, dirIndex[link]);
-  if (dirIndex[link].test(/^z\//)) {
+  if (/^z\//.test(dirIndex[link])) {
     frame = '#bookmarks'
     linkclass = 'link'
   } else if (dirIndex[link].test(/^b\//)) {
