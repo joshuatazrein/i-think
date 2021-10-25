@@ -299,8 +299,8 @@ function assembleList(masterDir, type) {
     for (entry of listObject.contents.filter(
       x => { return typeof x != 'object' })) {
       // push entries onto list
-      joinList.push('<' + type + '>' + entry.slice(0, entry.length - 5) + 
-        '</' + type + '>')
+      joinList.push('<span class="' + type + '">' + entry.slice(0, entry.length - 5) + 
+        '</span>')
     }
     for (entry of listObject.contents.filter(x => 
       { return typeof x === 'object' })) {
