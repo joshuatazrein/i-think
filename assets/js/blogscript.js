@@ -327,6 +327,7 @@ const notesInterval = setInterval(function() {
     clearInterval(notesInterval)
     setLinks('#bookmarks')
   }
+  console.log(dirIndex);
 }, 500)
 const sourcesInterval = setInterval(function() {
   // sources
@@ -335,6 +336,7 @@ const sourcesInterval = setInterval(function() {
     clearInterval(sourcesInterval)
     setLinks('#bibliography')
   }
+  console.log(dirIndex);
 }, 500)
 
 $('#results').hide()
