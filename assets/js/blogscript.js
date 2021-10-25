@@ -278,7 +278,8 @@ async function assembleList(masterDir, type) {
             // returns when resolved
             doneloading = setTimeout(function() {
               console.log(formatList(masterList));
-              resolve(formatList(masterList))
+              // resolve(formatList(masterList))
+              resolve('yes')
             }, 500)
           })
           // scan all subdirectories of list
