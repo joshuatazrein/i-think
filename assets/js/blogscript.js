@@ -291,10 +291,22 @@ function assembleList(masterDir, type) {
     console.log(list);
     // formats list of a single object
     let joinList
-    if (level == 3) {
-      joinList = ['<h3>' + list.name.slice(list.name.lastIndexOf('/')) + '</h3>']
+    if (!level) level = 3
+    if (level == 'init') {
+      joinList = []
+      level = 2
+    } else if (level == 4) {
+      joinList = ['<h4>' + list.name.slice(list.name.lastIndexOf('/') + 1) + 
+        '</h4>']
+    } else if (level == 5) {
+      joinList = ['<h5>' + list.name.slice(list.name.lastIndexOf('/') + 1) + 
+        '</h5>']
+    } else if (level == 6) {
+      joinList = ['<h6>' + list.name.slice(list.name.lastIndexOf('/') + 1) + 
+        '</h6>']
     } else {
-      joinList = ['<h4>' + list.name.slice(list.name.lastIndexOf('/')) + '</h4>']
+      joinList = ['<h3>' + list.name.slice(list.name.lastIndexOf('/') + 1) + 
+        '</h3>']
     }
     for (entry of list.contents.filter(
       x => { return typeof x != 'object' })) {
@@ -304,14 +316,15 @@ function assembleList(masterDir, type) {
     for (entry of list.contents.filter(x => 
       { return typeof x === 'object' })) {
       // scan objects and add them to the list
-      joinList.push(formatList(entry))
+      joinList.push(formatList(entry), level + 1)
     }
     return joinList.join('')
   }
   // do thing
   let masterList = scanDir(masterDir, {name: 'master', contents: []})
   setTimeout(function () {
-    masterList.then((result) => { console.log(formatList(result)) }) }, 1000);
+    masterList.then((result) => { console.log(
+      formatList(result, 'init')) }) }, 1000);
   return masterList
 }
 
