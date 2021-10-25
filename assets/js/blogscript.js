@@ -292,9 +292,9 @@ function assembleList(masterDir, type) {
     // formats list of a single object
     let joinList
     if (level == 3) {
-      joinList = ['<h3>' + list.name + '</h3>']
+      joinList = ['<h3>' + list.name.slice(list.name.lastIndexOf('/')) + '</h3>']
     } else {
-      joinList = ['<h4>' + list.name + '</h4>']
+      joinList = ['<h4>' + list.name.slice(list.name.lastIndexOf('/')) + '</h4>']
     }
     for (entry of list.contents.filter(
       x => { return typeof x != 'object' })) {
