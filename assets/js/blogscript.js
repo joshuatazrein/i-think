@@ -295,7 +295,7 @@ function assembleList(masterDir, type) {
     } else {
       let joinList = ['<h4>' + listObject.title + '</h4>']
     }
-    for (entry of listObject.content.filter(
+    for (entry of listObject.contents.filter(
       x => { return typeof x != 'object' })) {
       // push entries onto list
       joinList.push('<' + type + '>' + entry.slice(0, entry.length - 5) + 
