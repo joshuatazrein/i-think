@@ -274,9 +274,14 @@ function assembleList(masterDir, type) {
           }
           // add to master list
           selectedList.contents.push(listObject)
-          // start scan
+          // update the scan - RETURN on function
           doneloading = setTimeout(function() {
-            finalList = formatList(masterList)
+            if (type == 'link') {
+              notesList = formatList(masterList)
+            } else if (type == 'b-link') {
+              sourcesList = formatList(masterList)
+            }
+            console.log(masterList);
           }, 500)
           // scan all subdirectories of list
           for (dir of list.filter(x => {
@@ -314,5 +319,8 @@ function assembleList(masterDir, type) {
   return masterList
 }
 
+var notesList
+var sourcesList
+
 // try
-console.log(assembleList('../../z', 'link'))
+assembleList('../../z', 'link')
