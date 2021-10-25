@@ -7,6 +7,7 @@ var dirIndex = {};
 function followLink(link, text) {
   let frame
   let linkclass
+  console.log(link, dirIndex[link]);
   if (dirIndex[link].test(/^z\//)) {
     frame = '#bookmarks'
     linkclass = 'link'
