@@ -254,6 +254,7 @@ $(document).on('mouseup', function (ev) {
 
 function assembleList(masterDir, type) {
   var doneloading = undefined
+  var finalList
   // scans a directory to generate an object
   function scanDir(selectedDir, selectedList) {
     if (doneloading) clearTimeout(doneloading)
@@ -274,7 +275,8 @@ function assembleList(masterDir, type) {
           selectedList.contents.push(listObject)
           // start scan
           doneloading = setTimeout(function () {
-            masterList = formatList(masterList)
+            // sets final return value
+            finalList = formatList(masterList)
           }, 1000)
           // scan all subdirectories of list
           for (dir of list.filter(x => {
@@ -311,7 +313,7 @@ function assembleList(masterDir, type) {
     return joinList.join('')
   }
   let masterList = scanDir(masterDir, {name: 'master', contents: []})
-  return masterList
+  return finalList
 }
 
 // try
