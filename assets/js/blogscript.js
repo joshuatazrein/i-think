@@ -308,6 +308,7 @@ function assembleList(masterDir, type) {
       // scan objects and add them to the list
       joinList.push(formatList(entry))
     }
+    console.log(joinList);
     return joinList.join('')
   }
   let masterList = scanDir(masterDir, {name: 'master', contents: []})
