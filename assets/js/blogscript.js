@@ -124,7 +124,7 @@ function updateBacklinks() {
   searches = []
   $('#bookmarks .link').toArray().forEach(x => {
     const title = $(x).text();
-    $.get('./z/' + title + '.html', 
+    $.get(dirIndex[title], 
     function (s, m, xhr) {
       // find all backlinks
       $('#test').html(xhr.responseText);
@@ -136,7 +136,7 @@ function updateBacklinks() {
         if (el.attr('href')) { text = el.attr('href') }
         else { text = el.text() }
         // add to dict: [article], [backlinks]
-        if (!index[text]) { index[text] = [title]}
+        if (!index[text]) { index[text] = [title] }
         else { index[text].push(title) }
       })
       found = searches.concat()
