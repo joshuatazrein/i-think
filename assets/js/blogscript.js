@@ -224,8 +224,8 @@ function assembleList(masterDir, type) {
             for (x of listObject.contents) {
               // update links
               const title = x;
-              // add correct link to directory links
-              let dir = /(?<=^[\.\/]+)(.*)/.exec(selectedDir)
+              // add correct link to directory links: strip leading punc.
+              let dir = selectedDir.replace(/^[\.\/]+/, '')
               console.log(dir);
               dirIndex[title] = selectedDir + '/' + title
               $.get(selectedDir + '/' + title, 
