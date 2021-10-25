@@ -56,6 +56,7 @@ function setLinks(selector, tooltip) {
     } else {
       link = el.text()
     }
+    console.log(dirIndex[link]);
     $.get(
       dirIndex[link],
       function (t, s, xhr) {
