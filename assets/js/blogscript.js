@@ -203,20 +203,6 @@ function keyDown(ev) {
   } 
 }
 
-$('#results').hide()
-updateLinks();
-setTimeout(selectRandom, 100)
-$('#searchbar').on('keydown', search)
-$(document).on('keydown', keyDown)
-hideToolTip()
-$('#tooltip').on('mouseleave', hideToolTip)
-$(document).on('mouseup', function (ev) {
-  if (ev.target != $('#tooltip')[0] && 
-    !$(ev.target).parents().toArray().includes($('#tooltip')[0])) {
-    hideToolTip() 
-  }
-})
-
 function assembleList(masterDir, type) {
   var doneloading = undefined
   // scans a directory to generate an object
@@ -342,3 +328,16 @@ const sourcesInterval = setInterval(function() {
     clearInterval(sourcesInterval)
   }
 }, 500)
+
+$('#results').hide()
+setTimeout(selectRandom, 100)
+$('#searchbar').on('keydown', search)
+$(document).on('keydown', keyDown)
+hideToolTip()
+$('#tooltip').on('mouseleave', hideToolTip)
+$(document).on('mouseup', function (ev) {
+  if (ev.target != $('#tooltip')[0] && 
+    !$(ev.target).parents().toArray().includes($('#tooltip')[0])) {
+    hideToolTip() 
+  }
+})
