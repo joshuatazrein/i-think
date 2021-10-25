@@ -118,32 +118,6 @@ function toolTip(ev) {
   )
 }
 
-function updateBacklinks() {
-  // indexes backlinks
-  index = {}
-  searches = []
-  $('#bookmarks .link').toArray().forEach(x => {
-    const title = $(x).text();
-    $.get(dirIndex[title], 
-    function (s, m, xhr) {
-      // find all backlinks
-      $('#test').html(xhr.responseText);
-      searches.push([title, $('#test').text()])
-      $('#test').find('.link').toArray().forEach(y => {
-        // add link text
-        const el = $(y);
-        let text;
-        if (el.attr('href')) { text = el.attr('href') }
-        else { text = el.text() }
-        // add to dict: [article], [backlinks]
-        if (!index[text]) { index[text] = [title] }
-        else { index[text].push(title) }
-      })
-      found = searches.concat()
-    })
-  })
-}
-
 function selectRandom() {
   const children = $('#bookmarks .link')
   const linkselect = Math.floor(Math.random() * children.length)
@@ -219,14 +193,16 @@ function assembleList(masterDir) {
             for (x of listObject.contents) {
               // update links
               const title = x;
+              const shortitle = x.slice(0, x.length - 5)
               // add correct link to directory links: strip leading punc.
               let dir = selectedDir.replace(/^[\.\/]+/, '')
-              dirIndex[title.slice(0, title.length - 5)] = dir + '/' + title
+              dirIndex[shortitle] = dir + '/' + title
               $.get(dir + '/' + title, 
               function (s, m, xhr) {
                 // find all backlinks
                 $('#test').html(xhr.responseText);
-                searches.push([title, $('#test').text()])
+                searches.push([shortitle, 
+                  $('#test').text()])
                 $('#test').find('.link').toArray().forEach(y => {
                   // add link text
                   const el = $(y);
@@ -234,8 +210,8 @@ function assembleList(masterDir) {
                   if (el.attr('href')) { text = el.attr('href') }
                   else { text = el.text() }
                   // add to dict: [article], [backlinks]
-                  if (!index[text]) { index[text] = [title]}
-                  else { index[text].push(title) }
+                  if (!index[text]) { index[text] = [shortitle]}
+                  else { index[text].push(shortitle) }
                 })
                 found = searches.concat()
               })
@@ -320,6 +296,7 @@ const notesInterval = setInterval(function() {
     $('#bookmarks').html(notesList)
     clearInterval(notesInterval)
     setLinks('#bookmarks')
+    console.log(index);
   }
 }, 500)
 const sourcesInterval = setInterval(function() {
@@ -329,6 +306,7 @@ const sourcesInterval = setInterval(function() {
     $('#bibliography').html(sourcesList)
     clearInterval(sourcesInterval)
     setLinks('#bibliography')
+    console.log(index);
   }
 }, 500)
 
