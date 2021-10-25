@@ -302,7 +302,7 @@ function assembleList(masterDir, type) {
       joinList.push('<' + type + '>' + entry.slice(0, entry.length - 5) + 
         '</' + type + '>')
     }
-    for (entry of listObject.filter(x => 
+    for (entry of listObject.contents.filter(x => 
       { return typeof x === 'object' })) {
       // scan objects and add them to the list
       joinList.push(formatList(entry))
