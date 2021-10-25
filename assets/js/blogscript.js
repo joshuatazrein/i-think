@@ -223,10 +223,10 @@ function assembleList(masterDir, type) {
             }
             for (x of listObject.contents) {
               // update links
-              const title = $(x).text();
+              const title = x;
               // add correct link to directory links
-              dirIndex[title] = selectedDir + '/' + title + '.html'
-              $.get(selectedDir + '/' + title + '.html', 
+              dirIndex[title] = selectedDir + '/' + title
+              $.get(selectedDir + '/' + title, 
               function (s, m, xhr) {
                 // find all backlinks
                 $('#test').html(xhr.responseText);
