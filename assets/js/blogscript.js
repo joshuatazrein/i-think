@@ -274,7 +274,7 @@ function assembleList(masterDir, type) {
           selectedList.contents.push(listObject)
           // start scan
           doneloading = setTimeout(function () {
-            return formatList(masterList)
+            masterList = formatList(masterList)
           }, 1000)
           // scan all subdirectories of list
           for (dir of list.filter(x => {
