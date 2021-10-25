@@ -256,7 +256,7 @@ function assembleList(masterDir, type) {
   var doneloading = undefined
   let finalList
   // scans a directory to generate an object
-  async function scanDir(selectedDir, selectedList) {
+  function scanDir(selectedDir, selectedList) {
     if (doneloading) clearTimeout(doneloading)
     let returnlist
     let finalList
