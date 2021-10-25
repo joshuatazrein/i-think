@@ -289,6 +289,7 @@ function assembleList(masterDir, type) {
     return returnlist
   }
   function formatList(listObject, level) {
+    console.log(listObject);
     // formats list of a single object
     let joinList
     if (level == 3) {
