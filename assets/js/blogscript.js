@@ -313,20 +313,20 @@ assembleList('../../b')
 const notesInterval = setInterval(function() {
   // notes
   if (notesList) {
+    console.log(notesList);
     $('#bookmarks').html(notesList)
     clearInterval(notesInterval)
     setLinks('#bookmarks')
   }
-  console.log(dirIndex);
 }, 500)
 const sourcesInterval = setInterval(function() {
   // sources
   if (sourcesList) {
+    console.log(sourcesList);
     $('#bibliography').html(sourcesList)
     clearInterval(sourcesInterval)
     setLinks('#bibliography')
   }
-  console.log(dirIndex);
 }, 500)
 
 $('#results').hide()
