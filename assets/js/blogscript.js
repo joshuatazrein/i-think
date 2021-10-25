@@ -296,13 +296,13 @@ function scanDir(selectedDir, selectedList) {
           return x.slice(x.length - 5) != '.html'})) {
           scanDir(selectedDir + '/' + dir, listObject)
         }
-        doneloading = setTimeout(function () {
-          console.log(masterList)
-        }, 500)
         mylist = listObject
       },
     }
-  )}).then(function() { return mylist })
+  )}).then(function() { 
+    console.log(mylist);
+    return mylist 
+  })
 }
 
 var doneloading = undefined
