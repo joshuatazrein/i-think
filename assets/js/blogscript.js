@@ -272,10 +272,6 @@ function assembleList(masterDir, type) {
           // add to master list
           selectedList.contents.push(listObject)
           // update the scan - RETURN on function
-          doneloading = setTimeout(function() {
-            console.log(masterList);
-            notesList = masterList
-          }, 500)
           // scan all subdirectories of list
           for (dir of list.filter(x => {
             return x.slice(x.length - 5) != '.html'})) {
@@ -311,6 +307,8 @@ function assembleList(masterDir, type) {
     return joinList.join('')
   }
   let masterList = scanDir(masterDir, {name: 'master', contents: []})
+  setTimeout(function () {
+    console.log(masterList)}, 1000);
   return masterList
 }
 
