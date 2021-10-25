@@ -122,11 +122,12 @@ function toolTip(ev) {
 function selectRandom() {
   const children = $('#bookmarks .link')
   const linkselect = Math.floor(Math.random() * children.length)
-  console.log(children[linkselect]);
-  $.get(dirIndex[$(children[linkselect]).text()], function(s,a,xhr) {
-    console.log(xhr.responseText);
-    $('#zettels').html(xhr.responseText)
-  })
+  $(children[linkselect]).click()
+  // console.log(children[linkselect]);
+  // $.get(dirIndex[$(children[linkselect]).text()], function(s,a,xhr) {
+  //   console.log(xhr.responseText);
+  //   $('#zettels').html(xhr.responseText)
+  // })
 }
 
 function search(ev) {
@@ -296,6 +297,7 @@ const notesInterval = setInterval(function() {
     $('#bookmarks').html(notesList)
     clearInterval(notesInterval)
     setLinks('#bookmarks')
+    selectRandom()
   }
 }, 500)
 const sourcesInterval = setInterval(function() {
@@ -305,7 +307,6 @@ const sourcesInterval = setInterval(function() {
     $('#bibliography').html(sourcesList)
     clearInterval(sourcesInterval)
     setLinks('#bibliography')
-    console.log(index);
   }
 }, 500)
 
