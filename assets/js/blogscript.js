@@ -275,8 +275,9 @@ $(document).on('mouseup', function (ev) {
 // }
 
 function scanDir(selectedDir, selectedList) {
-  if (doneloading) { clearTimeout(doneloading) }
-  $.ajax('assets/php/listdir.php',
+  var mylist
+  new Promise(function () {
+    $.ajax('assets/php/listdir.php',
     {
       data: {dir: selectedDir},
       success: function(a,s,xhr) {
@@ -298,10 +299,10 @@ function scanDir(selectedDir, selectedList) {
         doneloading = setTimeout(function () {
           console.log(masterList)
         }, 500)
-        return listObject
+        mylist = listObject
       },
     }
-  )
+  )}).then(function() { return mylist })
 }
 
 var doneloading = undefined
