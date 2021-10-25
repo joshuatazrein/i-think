@@ -5,6 +5,7 @@ var tooltiptimer;
 var dirIndex = {};
 
 function followLink(link, text) {
+  console.trace()
   let frame
   let linkclass = 'link'
   console.log(link, dirIndex[link]);
