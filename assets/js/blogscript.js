@@ -342,3 +342,5 @@ $(document).on('mouseup', function (ev) {
     hideToolTip() 
   }
 })
+setLinks('#bookmarks')
+setLinks('#bibliography')
