@@ -6,14 +6,12 @@ var dirIndex = {};
 
 function followLink(link, text) {
   let frame
-  let linkclass
+  let linkclass = 'link'
   console.log(link, dirIndex[link]);
   if (/^z\//.test(dirIndex[link])) {
     frame = '#bookmarks'
-    linkclass = 'link'
-  } else if (dirIndex[link].test(/^b\//)) {
+  } else if (/^b\//.test(dirIndex[link])) {
     frame = '#bibliography'
-    linkclass = 'b-link'
   }
   $('#zettels').html('<h4>' + link + '</h4>' + text);
   if (index[link]) {
@@ -45,9 +43,7 @@ function followLink(link, text) {
 function setLinks(selector, tooltip) {
   // sets links as clickable
   if (!selector) selector = ''
-  console.log(selector + ' .link, ' + selector + ' .b-link');
-  console.log($(selector + ' .link, ' + selector + ' .b-link'));
-  $(selector + ' .link, ' + selector + ' .b-link').on(
+  $(selector + ' .link').on(
     'mouseup', function (ev) {
     let el = $(ev.target)
     while (!['SPAN', 'P'].includes(el[0].tagName)) {
@@ -69,9 +65,9 @@ function setLinks(selector, tooltip) {
     );
   });
   if (tooltip != false) {
-    $(selector + ' .b-link, ' + selector + ' .link').on('mouseover', 
+    $(selector + ' .link').on('mouseover', 
       function (ev) { tooltiptimer = setTimeout(toolTip, 1000, ev) })
-    $(selector + ' .b-link, ' + selector + ' .link').on('mouseleave', 
+    $(selector + ' .link').on('mouseleave', 
       function (ev) { clearTimeout(tooltiptimer) })
   }
 }
@@ -84,19 +80,13 @@ function hideToolTip() {
 
 function toolTip(ev) {
   const el = $(ev.target)
-  let location
-  if (el.hasClass('link')) {
-    location = './z/'
-  } else if (el.hasClass('b-link')) {
-    location = './b/'
-  }
   let title
   if (el.attr('href')) {
     title = el.attr('href')
   } else {
     title = el.text()
   }
-  location += title + '.html'
+  let location = dirIndex[title]
   $.get(location, 
     function (s, m, xhr) {
       if (!el.parents().toArray().includes($('#tooltip')[0])) {
@@ -208,7 +198,7 @@ function keyDown(ev) {
   } 
 }
 
-function assembleList(masterDir, type) {
+function assembleList(masterDir) {
   var doneloading = undefined
   // scans a directory to generate an object
   async function scanDir(selectedDir, selectedList) {
@@ -304,9 +294,9 @@ function assembleList(masterDir, type) {
   let masterList = scanDir(masterDir, {name: 'master', contents: []})
   setTimeout(function () {
     masterList.then((result) => 
-    { if (type == 'link') {
+    { if (/z\//.test(masterDir)) {
       notesList = formatList(result, 'init') 
-    } else if (type == 'b-link') {
+    } else if (/b\//.test(masterDir)) {
       sourcesList = formatList(result, 'init')
     }}), 1000 
   })
@@ -317,8 +307,8 @@ var notesList
 var sourcesList
 
 // try
-assembleList('../../z', 'link')
-assembleList('../../b', 'b-link')
+assembleList('../../z')
+assembleList('../../b')
 
 const notesInterval = setInterval(function() {
   // notes

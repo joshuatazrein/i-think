@@ -219,12 +219,12 @@ input {
   padding: 6px 10px;
 }
 
-.link, .b-link {
+.link {
   color: var(--link);
   transition: color 0.5s;
 }
 
-.link:hover, .b-link:hover {
+.link:hover {
   color: var(--select);
 }
 
