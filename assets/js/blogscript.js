@@ -277,6 +277,7 @@ async function assembleList(masterDir, type) {
           finalList = new Promise(function(resolve) {
             // returns when resolved
             doneloading = setTimeout(function() {
+              console.log(formatList(masterList));
               resolve(formatList(masterList))
             }, 500)
           })
