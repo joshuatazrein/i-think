@@ -281,7 +281,8 @@ function assembleList(masterDir) {
     for (entry of list.contents.filter(
       x => { return typeof x != 'object' })) {
       // push entries onto list
-      joinList.push('<p class="' + type + '">' + entry.slice(0, entry.length - 5) + '</p>')
+      joinList.push('<p class="link">' + 
+        entry.slice(0, entry.length - 5) + '</p>')
     }
     for (entry of list.contents.filter(x => 
       { return typeof x === 'object' })) {
