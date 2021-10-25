@@ -311,8 +311,7 @@ function assembleList(masterDir, type) {
   // do thing
   let masterList = scanDir(masterDir, {name: 'master', contents: []})
   setTimeout(function () {
-    console.log(masterList.result);
-    console.log(formatList(masterList.result))}, 1000);
+    masterList.then((result) => { console.log(formatList(result)) }) }, 1000);
   return masterList
 }
 
