@@ -44,6 +44,7 @@ function followLink(link, text) {
 function setLinks(selector, tooltip) {
   // sets links as clickable
   if (!selector) selector = ''
+  console.log($(selected + '. link, ' + selector + ' .b-link'));
   $(selector + ' .link, ' + selector + ' .b-link').on(
     'mouseup', function (ev) {
     let el = $(ev.target)
