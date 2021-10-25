@@ -297,9 +297,9 @@ function assembleList(masterDir) {
     masterList.then((result) => 
     {
       console.log(masterDir, result);
-      if (/z\//.test(masterDir)) {
+      if (/\/z/.test(masterDir)) {
         notesList = formatList(result, 'init') 
-      } else if (/b\//.test(masterDir)) {
+      } else if (/\/b/.test(masterDir)) {
         sourcesList = formatList(result, 'init')
       }
     }), 1000 
