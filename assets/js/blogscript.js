@@ -225,6 +225,8 @@ function assembleList(masterDir, type) {
               // update links
               const title = x;
               // add correct link to directory links
+              let dir = selectedDir.exec(/(?!=^[\.\/])(.*)/)
+              console.log(dir);
               dirIndex[title] = selectedDir + '/' + title
               $.get(selectedDir + '/' + title, 
               function (s, m, xhr) {
