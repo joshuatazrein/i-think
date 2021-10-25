@@ -287,23 +287,23 @@ function assembleList(masterDir, type) {
     const thing = await myPromise;
     return thing
   }
-  function formatList(listObject, level) {
-    console.log(listObject);
+  function formatList(promise, level) {
+    console.log(promise.result);
     // formats list of a single object
     let joinList
-    console.log(listObject);
+    console.log(promise.result);
     console.trace()
     if (level == 3) {
-      joinList = ['<h3>' + listObject.title + '</h3>']
+      joinList = ['<h3>' + promise.result.title + '</h3>']
     } else {
-      joinList = ['<h4>' + listObject.title + '</h4>']
+      joinList = ['<h4>' + promise.result.title + '</h4>']
     }
-    for (entry of listObject.contents.filter(
+    for (entry of promise.result.contents.filter(
       x => { return typeof x != 'object' })) {
       // push entries onto list
       joinList.push('<span class="' + type + '">' + entry.slice(0, entry.length - 5) + '</span>')
     }
-    for (entry of listObject.contents.filter(x => 
+    for (entry of promise.result.contents.filter(x => 
       { return typeof x === 'object' })) {
       // scan objects and add them to the list
       joinList.push(formatList(entry))
