@@ -124,7 +124,9 @@ function selectRandom() {
   const linkselect = Math.floor(Math.random() * children.length)
   console.log(children[linkselect]);
   $.get(dirIndex[$(children[linkselect]).text()], function(s, a, xhr) {
+    $('#zettels').css('opacity', 0)
     followLink($(children[linkselect]).text(), xhr.responseText)
+    $('#zettels').animate({opacity: 1}, 1000)
   })
 }
 
