@@ -122,12 +122,7 @@ function toolTip(ev) {
 function selectRandom() {
   const children = $('#bookmarks .link')
   const linkselect = Math.floor(Math.random() * children.length)
-  $.get(
-    './z/' + $(children[linkselect]).text() + '.html',
-    function (s, m, xhr) {
-      followLink($(children[linkselect]).text(), xhr.responseText, 'link')
-    }
-  )
+  $(children[linkselect]).click()
 }
 
 function search(ev) {
@@ -297,7 +292,7 @@ const notesInterval = setInterval(function() {
     $('#bookmarks').html(notesList)
     clearInterval(notesInterval)
     setLinks('#bookmarks')
-    console.log(index);
+    selectRandom()
   }
 }, 500)
 const sourcesInterval = setInterval(function() {
@@ -312,7 +307,6 @@ const sourcesInterval = setInterval(function() {
 }, 500)
 
 $('#results').hide()
-setTimeout(selectRandom, 100)
 $('#searchbar').on('keydown', search)
 $(document).on('keydown', keyDown)
 hideToolTip()
