@@ -122,7 +122,9 @@ function toolTip(ev) {
 function selectRandom() {
   const children = $('#bookmarks .link')
   const linkselect = Math.floor(Math.random() * children.length)
-  $(children[linkselect]).trigger('mouseup')
+  $.get(dirIndex[$(children[linkselect]).text()], function(s,a,xhr) {
+    $('#zettels').html(xhr.responseText)
+  })
 }
 
 function search(ev) {
