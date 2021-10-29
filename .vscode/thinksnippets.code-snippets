@@ -36,13 +36,16 @@
 		"prefix": "bb",
 		"body": [
 			"<p>",
-			"$1  ",
+			"$1",
 			"</p>",
 			"<h5>$2</h5>",
 			"<ul>",
-			"  <li><span class='page'>$3</span> $4</li>",
+			"  <li tag='$3'><span class='page'>$4</span> $5</li>",
 			"</ul>",
-			"<p class='date'>$5</p>",
+			"<p class='date'>$0</p>",
+			"<div class='tags'>",
+			"  <button class='tag'>$6</button>",
+			"</div>",
 		],
 		"description": "bibliography body"
 	},
@@ -52,7 +55,7 @@
 		"body": [
 			"<h5>$1</h5>",
 			"<ul>",
-			"  <li><span class='page'>$2</span> $3</li>",
+			"  <li tag='$2'><span class='page'>$3</span> $4</li>$0",
 			"</ul>",
 		],
 		"description": "bibliography body"
@@ -61,7 +64,7 @@
 		"scope": "html",
 		"prefix": "bn",
 		"body": [
-			"\n<li><span class='page'>$1</span> $2</li>$0",
+			"\n<li tag='$1'><span class='page'>$2</span> $3</li>$0",
 		],
 		"description": "bibliography line"
 	},
@@ -72,9 +75,17 @@
 			"<p>",
 			"  $1",
 			"</p>",
-			"<p class='date'></p>",
+			"<p class='date'>$2</p>",
 		],
 		"description": "zettel body"
+	},
+	"Tag Button": {
+		"scope": "html",
+		"prefix": "bt",
+		"body": [
+			"\n  <button class='tag' name='$1'>$2</button>"
+		],
+		"description": "tag button"
 	},
 	"Page": {
 		"scope": "html",
