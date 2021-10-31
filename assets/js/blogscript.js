@@ -7,7 +7,6 @@ var dirIndex = {};
 function followLink(link, text) {
   let frame
   let linkclass = 'link'
-  console.log(link, dirIndex[link]);
   if (/^z\//.test(dirIndex[link])) {
     frame = '#bookmarks'
   } else if (/^b\//.test(dirIndex[link])) {
@@ -39,6 +38,25 @@ function followLink(link, text) {
   setLinks('#history');
   setLinks('#backlinks');
   $('#tooltip').hide(300)
+  $('#tags > button').on('click', followTag)
+}
+
+function followTag(ev) {
+  el = $(ev.target)
+  if (!el.hasClass('selectedTag')) {
+    $('#tags > button').removeClass('selectedTag')
+    el.addClass('selectedTag')
+    $('#zettels li').toArray().forEach(x => {
+      if (!$(x).attr('tag').includes(el.attr('name'))) {
+        $(x).hide(300)
+      } else {
+        $(x).show(300)
+      }
+    })
+  } else {
+    $('#tags > button').removeClass('selectedTag')
+    $('#zettels li').show(300)
+  }
 }
 
 function setLinks(selector, tooltip) {
@@ -56,8 +74,6 @@ function setLinks(selector, tooltip) {
     } else {
       link = el.text()
     }
-    console.log('link');
-    console.log(dirIndex[link]);
     $.get(
       dirIndex[link],
       function (t, s, xhr) {
@@ -122,7 +138,6 @@ function toolTip(ev) {
 function selectRandom() {
   const children = $('#bookmarks .link')
   const linkselect = Math.floor(Math.random() * children.length)
-  console.log(children[linkselect]);
   $.get(dirIndex[$(children[linkselect]).text()], function(s, a, xhr) {
     followLink($(children[linkselect]).text(), xhr.responseText)
     $('#zettels').animate({opacity: 1}, 1000)
@@ -135,22 +150,24 @@ function search(ev) {
     $('#results').empty()
     $('#results').hide()
     found = searches.concat()
-    console.log(found);
   } else {
     $('#results').show()
-    console.log(found);
     const searchtext = $('#searchbar').val().split(' ')
-    console.log(searchtext);
+    const titles = []
     found = found.filter(x => {
       for (y of searchtext) {
-        console.log(x[1], new RegExp(y, 'i'));
-        if (!new RegExp(y, 'i').test(x[1])) { 
-          console.log(x[0], 'false');
+        const regexp = new RegExp(y, 'i')
+        if (regexp.test(x[0])) {
+          // in title, move to top
+          titles.push(x)
+          return false
+        }
+        if (!regexp.test(x[1])) { 
           return false }
       }
-      console.log(x[0], 'true');
       return true
     })
+    found = titles.concat(['* * *'], found)
     $('#results').empty()
     $('#results').html(
       '<p class="link">' + 
@@ -168,7 +185,6 @@ function keyDown(ev) {
     $('#results').hide()
     $('#searchbar').blur()
     found = searches.concat()
-    console.log(found);
   } 
 }
 
@@ -234,7 +250,6 @@ function assembleList(masterDir) {
     return thing
   }
   function formatList(list, level) {
-    console.log(list);
     // formats list of a single object
     let joinList
     if (level == 'init') {
@@ -272,7 +287,6 @@ function assembleList(masterDir) {
   setTimeout(function () {
     masterList.then((result) => 
     {
-      console.log(masterDir, result);
       if (/\/z/.test(masterDir)) {
         notesList = formatList(result, 'init') 
       } else if (/\/b/.test(masterDir)) {
@@ -292,7 +306,6 @@ assembleList('../../b')
 const notesInterval = setInterval(function() {
   // notes
   if (notesList) {
-    console.log(notesList);
     $('#bookmarks').html(notesList)
     clearInterval(notesInterval)
     setLinks('#bookmarks')
@@ -302,7 +315,6 @@ const notesInterval = setInterval(function() {
 const sourcesInterval = setInterval(function() {
   // sources
   if (sourcesList) {
-    console.log(sourcesList);
     $('#bibliography').html(sourcesList)
     clearInterval(sourcesInterval)
     setLinks('#bibliography')
