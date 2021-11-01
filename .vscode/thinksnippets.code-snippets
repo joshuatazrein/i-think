@@ -43,7 +43,7 @@
 			"  <li tag='$3'><span class='page'>$4</span> $5</li>",
 			"</ul>",
 			"<p class='date'>$0</p>",
-			"<div class='tags'>",
+			"<div id='tags'>",
 			"  <button class='tag' name='$6'>$7</button>",
 			"</div>",
 		],
