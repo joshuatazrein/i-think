@@ -44,7 +44,7 @@
 			"</ul>",
 			"<p class='date'>$0</p>",
 			"<div class='tags'>",
-			"  <button class='tag'>$6</button>",
+			"  <button class='tag' name='$6'>$7</button>",
 			"</div>",
 		],
 		"description": "bibliography body"
@@ -83,7 +83,7 @@
 		"scope": "html",
 		"prefix": "bt",
 		"body": [
-			"\n  <button class='tag' name='$1'>$2</button>"
+			"\n<button class='tag' name='$1'>$2</button>$0"
 		],
 		"description": "tag button"
 	},
