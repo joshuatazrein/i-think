@@ -218,7 +218,7 @@ function assembleList(masterDir) {
                 // find all backlinks
                 $('#test').html(xhr.responseText);
                 searches.push([shortitle, 
-                  $('#test').text()])
+                  $('#test').html()])
                 $('#test').find('.link').toArray().forEach(y => {
                   // add link text
                   const el = $(y);
