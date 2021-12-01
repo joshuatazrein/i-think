@@ -54,9 +54,9 @@
 		"prefix": "bs",
 		"body": [
 			"<h5>$1</h5>",
-			"<ul>",
-			"  <li tag='$2'><span class='page'>$3</span> $4</li>$0",
-			"</ul>",
+			"<p>",
+			"  $2",
+			"</p>",
 		],
 		"description": "bibliography body"
 	},

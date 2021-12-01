@@ -5,6 +5,10 @@
 		}
 	],
 	"settings": {
-		"typewriterScrollMode.enable": false
+		"typewriterScrollMode.enable": true,
+		"editor.wordSeparators": "<",
+		"editor.rulers": [],
+		"editor.fontFamily": "'Courier New', monospace",
+		"editor.fontSize": 18,
 	}
 }
